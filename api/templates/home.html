@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PL1</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 </head>
-<body>
-    <main>
+    <body>
+        <header>
+            <a class="Logo" href="index.html">
+                <img  width="80" src="../static/yellow.jpg" alt="Logo da empresa"> 
+            </a>
+            <div class="search-container">
+                <div class="aoba">
+                    <input type="text" placeholder="Buscar" class="search-input">
+                    <select name="estado" id="estado" required>
+                        <option value="SP">SP</option>
+                    </select>
+                </div>
+                <button class="search-button">Buscar</button>
+            </div>
+            <nav>
+                <ul class="navl">
+                    <li><a  href="">Chat</a></li>
+                    <li><a href="">Notificação</a></li>            
+                </ul>
+            </nav>            
+            <ul class="dist">
+                <li><a  href="login.html"><button class="login">Entar</button></a></li>
+                <li><a  href="login.html"><button class="Anunciar">Vender</button></a></li>
+            </ul>
+        </header>
+        <main>
             <div class="view"> 
                 
                 <div class ="anun">
@@ -46,6 +72,74 @@
                 </div>
             </div>
         </main>
+        <footer>
+            
+        </footer>
+    </body>
+    <style>
+        
+body{
+    background-image: url(../static/Frame1.png);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
 
-</body>
+.view{
+    display: flex;
+    margin: 50px;
+    max-width: 90vw;
+    justify-content: space-evenly;
+    justify-items: stretch;
+    align-content: space-around;
+    align-items: stretch;
+}
+
+.anun{
+    margin: 15px;
+    position: relative;
+    background-color: #fff;
+    padding: 5px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+   
+}
+
+.anun a p{
+   padding: 5px;
+}
+
+.anun a h3{
+    font-size: larger;
+     
+    
+}
+
+.img{
+    border-radius: 10px;
+    width: 290px; 
+    height: 250px;
+}
+
+.anun:hover{
+    animation: pulse 2s normal ;
+}
+
+.anun {
+    
+    transform-origin: center;
+}
+
+.anun > * {
+    transition: transform 1s; /* Define a transição de transformação com duração de 1 segundo */
+}
+
+.anun:hover {
+    transform: scale(1.01); /* Aumenta o tamanho em 20% */
+}
+    </style>
 </html>
+
+
