@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
      <meta charset="UTF-8">
@@ -206,21 +206,25 @@
                <!-- <img src="../static/image/2gather.png" alt="" width="30%"> -->
                <img src="../static/image/2gather.svg" alt="" width="40%">
                <h4>Esqueceu a senha? Não tem problema,<br> estamos aqui para ajudar.😊</h5>
+                {% with messages = get_flashed_messages() %} {% if messages %}
+<div class="notification">{{ messages[0] }}</div>
+{% endif %} {% endwith %
           </div>
-     
+          <form action="/recuperar_senha" method="post">
           <p style="margin-bottom: 0; color: #333333;">Digite seu e-mail para alterar sua senha.
           </p>
           <p style="margin:5% 0px 1% 0px;">Email:</p>
           <div class="inputbox">
                <input name="user_email" type="text" id="user_email" required />
           </div>
-          <button onclick="Enviar()">Recuperar a Senha</button>
-          <center>
+          <button onclick="Enviar()" type="submit">Recuperar a Senha</button>
+          <!--<center>
                <p style="margin:5% 0px 1% 0px;">
                     <b><i>Lembrou Da Senha? </i></b>&nbsp;
-                    <a href="{{ url_for('auth.login')}}">LogIn</a>
+                    <a href="{{ url_for('auth.login')}}"">LogIn</a>
                </p>
-          </center>
+          </center>-->
+        </form>
      </main>
 </body>
 <script>
