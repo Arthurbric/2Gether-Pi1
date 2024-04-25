@@ -97,18 +97,19 @@ def recuperar_senha_post():
 
         if checkCodigo is not None:
             deleteCodigo(email)
+        envio_email = enviar_email(codigo_verificacao, email)
 
-        if enviar_email(codigo_verificacao, email)[1] == 0:
-            flash("Ocorreu um erro ao enviar o email, tente novamente!")
+        if  envio_email[1] == 0:
+            flash(envio_email[0])
             return redirect(url_for("auth.recuperar_senha"))
+        
+        else:
+            insertCodigo(email, codigo_verificacao, expiration_time)
 
+            session["EmailVerificadoReset"] = True
 
-        insertCodigo(email, codigo_verificacao, expiration_time)
-
-        session["EmailVerificadoReset"] = True
-
-        flash("Um código de verificação foi enviado para o seu email. Por favor, verifique.")
-        return redirect(url_for("auth.ES_6digito", email=email))
+            flash(envio_email[0])
+            return redirect(url_for("auth.ES_6digito", email=email))
 
     else:
         flash("Email não cadastrado!")

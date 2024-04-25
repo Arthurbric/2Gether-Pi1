@@ -6,7 +6,7 @@ import mysql.connector
 cnx = mysql.connector.connect(
     user="root",
     password="senhaUltraSegura",
-    host="192.168.0.103",
+    host="192.168.0.102",
     database="db_eventos",
 )
 

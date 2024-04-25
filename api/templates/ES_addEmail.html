@@ -196,19 +196,17 @@
 
 <body>
      <main>
-          <div class="container">
-               <a href="{{ url_for('main.home')}}"> <img src="../static/image/x.svg" alt="Your Image"></a>
-          </div>
           {% with messages = get_flashed_messages() %} {% if messages %}
           <div class="notification">{{ messages[0] }}</div>
           {% endif %} {% endwith %}
+          <div class="container">
+               <a href="#"> <img src="../static/image/x.svg" alt="Your Image"></a>
+          </div>
+          
           <div>
                <!-- <img src="../static/image/2gather.png" alt="" width="30%"> -->
                <img src="../static/image/2gather.svg" alt="" width="40%">
                <h4>Esqueceu a senha? Não tem problema,<br> estamos aqui para ajudar.😊</h5>
-                {% with messages = get_flashed_messages() %} {% if messages %}
-<div class="notification">{{ messages[0] }}</div>
-{% endif %} {% endwith %
           </div>
           <form action="/recuperar_senha" method="post">
           <p style="margin-bottom: 0; color: #333333;">Digite seu e-mail para alterar sua senha.

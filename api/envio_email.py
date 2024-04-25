@@ -48,6 +48,6 @@ def enviar_email(user_name, codigo, user_email):
         s.login(msg["From"], password)
         s.sendmail(msg["From"], [msg["To"]], msg.as_string())
         s.quit()
-        return f("Sucesso: E-mail enviado com sucesso para {user_email}!", 1) 
+        return (f"Sucesso: E-mail enviado com sucesso para {user_email}!", 1) 
     except Exception as e:
         return ( f"Oops! Parece que houve um problema ao enviar o e-mail. Por favor, tente novamente",0)
