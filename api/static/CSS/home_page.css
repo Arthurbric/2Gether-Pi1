@@ -1,0 +1,63 @@
+body{
+    background-image: url(../static/Frame1.png);
+    background-size: cover;
+    background-: ;
+    width: 100vw;
+    height: 100vh;
+}
+
+.view{
+    display: flex;
+    margin: 50px;
+    max-width: 90vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-around;
+    align-items: stretch;
+
+}
+
+.anun{
+    margin: 15px;
+    position: relative;
+    background-color: #fff;
+    padding: 5px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+   
+}
+
+.anun a p{
+   padding: 5px;
+}
+
+.anun a h3{
+    font-size: larger;
+     
+    
+}
+
+.img{
+    border-radius: 10px;
+    width: 290px; 
+    height: 250px;
+}
+
+.anun:hover{
+    animation: pulse 2s normal ;
+}
+
+.anun {
+    
+    transform-origin: center;
+}
+
+.anun > * {
+    transition: transform 1s; /* Define a transição de transformação com duração de 1 segundo */
+}
+
+.anun:hover {
+    transform: scale(1.01); /* Aumenta o tamanho em 20% */
+}
