@@ -2,13 +2,20 @@ import mysql.connector
 
 
 # print(cnx.is_connected())
-
-cnx = mysql.connector.connect(
-    user="root",
-    password="senhaUltraSegura",
-    host="192.168.0.102",
-    database="db_eventos",
-)
+try:
+    cnx = mysql.connector.connect(
+        user="root",
+        password="senhaUltraSegura",
+        host="192.168.0.102",
+        database="db_eventos",
+    )
+except:
+    cnx = mysql.connector.connect(
+        user="root",
+        password="Gatitcha1",
+        host="127.0.0.1",
+        database="db_eventos",
+    )
 
 
 def CheckLogin(user, senha):
@@ -89,13 +96,13 @@ def insertCadastro(email, senha, nome1, nome2, cpf):
     cursor.close()
 
 
-def insertCodigo(email, verification_code, expiration_time):
+def insertCodigo(email, verification_code):
     cursor = cnx.cursor()
     query = (
         "INSERT INTO tb_verificacao_senha (user_id, user_email, verification_code, expiration_time) VALUES ("
         "(SELECT user_id FROM tb_usuario WHERE user_email = %s), %s, %s,NOW() + INTERVAL %s MINUTE)"
     )
-    cursor.execute(query, (email, email, verification_code, expiration_time))
+    cursor.execute(query, (email, email, verification_code))
     cnx.commit()
     cursor.close()
 

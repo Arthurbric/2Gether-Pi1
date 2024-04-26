@@ -11,7 +11,7 @@ def gerar_codigo():
     return codigo
 
 
-def enviar_email(user_name, codigo, user_email):
+def enviar_email(user_name, user_email, codigo):
 
     corpo_email = f"""
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ def enviar_email(user_name, codigo, user_email):
         msg["Subject"] = f"Verificação de e-mail da 2gather"
         msg["From"] = "suporte2gather@gmail.com"
         msg["To"] = f"{user_email}"
-        password = f"wttfjeknjfrddnzd"
+        password = f"pplvuswahkimybob"
         msg.attach(email.mime.text.MIMEText(corpo_email, "html"))
 
         s = smtplib.SMTP("smtp.gmail.com: 587")
@@ -51,3 +51,6 @@ def enviar_email(user_name, codigo, user_email):
         return (f"Sucesso: E-mail enviado com sucesso para {user_email}!", 1) 
     except Exception as e:
         return ( f"Oops! Parece que houve um problema ao enviar o e-mail. Por favor, tente novamente",0)
+
+if __name__ == "__main__":
+    print(enviar_email('guilherme', gerar_codigo, 'guilhermehzf@sempreceub.com'))

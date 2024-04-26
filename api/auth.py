@@ -85,27 +85,25 @@ def recuperar_senha():
 @auth.route("/recuperar_senha", methods=["POST"])
 def recuperar_senha_post():
     email = request.form.get("user_email")
-
+    user_name = selectFromWhere("tb_usuario", "user_email", email, "user_name")
     count = CheckCadastro("user_email", email)
 
     if count >= 1:
 
         codigo_verificacao = gerar_codigo()
-        expiration_time = 10
 
-        checkCodigo = selectFromWhere("tb_verificacao_senha", "user_email", email)
+        checkCodigo = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code")
 
-        if checkCodigo is not None:
-            deleteCodigo(email)
-        envio_email = enviar_email(codigo_verificacao, email)
+        
+        envio_email = enviar_email(user_name, email, codigo_verificacao)
 
         if  envio_email[1] == 0:
             flash(envio_email[0])
             return redirect(url_for("auth.recuperar_senha"))
         
+        if checkCodigo is not None:
+            deleteCodigo(email)
         else:
-            insertCodigo(email, codigo_verificacao, expiration_time)
-
             session["EmailVerificadoReset"] = True
 
             flash(envio_email[0])
