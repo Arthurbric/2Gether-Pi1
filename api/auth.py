@@ -94,20 +94,21 @@ def recuperar_senha_post():
 
         checkCodigo = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code")
 
+        if checkCodigo is not None:
+                deleteCodigo(email)
         
+        insertCodigo(email, codigo_verificacao)
+
         envio_email = enviar_email(user_name, email, codigo_verificacao)
 
         if  envio_email[1] == 0:
             flash(envio_email[0])
             return redirect(url_for("auth.recuperar_senha"))
-        
-        if checkCodigo is not None:
-            deleteCodigo(email)
         else:
             session["EmailVerificadoReset"] = True
 
             flash(envio_email[0])
-            return redirect(url_for("auth.ES_6digito", email=email))
+            return redirect(url_for("auth.verificar_codigo", email=email))
 
     else:
         flash("Email não cadastrado!")

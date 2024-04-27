@@ -17,7 +17,6 @@ except:
         database="db_eventos",
     )
 
-
 def CheckLogin(user, senha):
     query = (
         "SELECT COUNT(*) FROM tb_usuario WHERE user_email =  %s  AND user_password = %s"
@@ -67,13 +66,17 @@ def selectFromWhere(tabela, campoReferencia, valorReferencia, campoBuscado="*"):
 
     querySet = cursor.fetchone()
 
-    result = querySet[0]
+    if querySet == None:
+        return querySet
+    
+    else:
+        result = querySet[0]
 
-    # print(result)
+        # print(result)
 
-    cursor.close()
+        cursor.close()
 
-    return result
+        return result
 
 
 def insertCadastro(email, senha, nome1, nome2, cpf):
@@ -100,15 +103,15 @@ def insertCodigo(email, verification_code):
     cursor = cnx.cursor()
     query = (
         "INSERT INTO tb_verificacao_senha (user_id, user_email, verification_code, expiration_time) VALUES ("
-        "(SELECT user_id FROM tb_usuario WHERE user_email = %s), %s, %s,NOW() + INTERVAL %s MINUTE)"
+        "(SELECT user_id FROM tb_usuario WHERE user_email = %s), %s, %s, DATE_ADD(NOW(), INTERVAL 10 MINUTE))"
     )
-    cursor.execute(query, (email, email, verification_code))
+    cursor.execute(query, [email, email, verification_code])
     cnx.commit()
     cursor.close()
 
 
 def deleteCodigo(email):
-    cursor = cnx.cursor
+    cursor = cnx.cursor()
 
     query = "DELETE FROM tb_verificacao_senha WHERE user_email = '" + email + "'"
 
