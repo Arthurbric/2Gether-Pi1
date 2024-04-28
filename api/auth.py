@@ -1,16 +1,8 @@
-from flask import (
-    render_template,
-    request,
-    Flask,
-    Blueprint,
-    flash,
-    url_for,
-    redirect,
-    session,
-)
+from flask import (render_template, request, Flask, Blueprint, flash, url_for, redirect, session)
 from DAO import *
 from hashlib import sha256
 from envio_email import gerar_codigo, enviar_email
+from datetime import datetime
 
 codigos_de_verificacao = {}
 
@@ -84,22 +76,22 @@ def recuperar_senha():
 
 @auth.route("/recuperar_senha", methods=["POST"])
 def recuperar_senha_post():
-    email = request.form.get("user_email")
+    email = request.form.get("user_email").strip()
     user_name = selectFromWhere("tb_usuario", "user_email", email, "user_name")
     count = CheckCadastro("user_email", email)
 
     if count >= 1:
 
         codigo_verificacao = gerar_codigo()
-
+        time = datetime.now().replace(microsecond=0)
         checkCodigo = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code")
 
         if checkCodigo is not None:
                 deleteCodigo(email)
         
-        insertCodigo(email, sha256(codigo_verificacao.encode("utf-8")).hexdigest())
+        insertCodigo(email, sha256(codigo_verificacao.encode("utf-8")).hexdigest(), time)
 
-        envio_email = enviar_email(user_name, email, codigo_verificacao)
+        envio_email = enviar_email(user_name, email, codigo_verificacao, time.strftime('%H:%M:%S'))
 
         if  envio_email[1] == 0:
             flash(envio_email[0])

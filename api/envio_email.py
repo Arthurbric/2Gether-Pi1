@@ -11,7 +11,7 @@ def gerar_codigo():
     return codigo
 
 
-def enviar_email(user_name, user_email, codigo):
+def enviar_email(user_name, user_email, codigo, time):
 
     corpo_email = f"""
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ def enviar_email(user_name, user_email, codigo):
         <p style="margin-bottom: 20px;">Olá, <strong>{user_name}</strong>,</p>
         <p style="margin-bottom: 20px;">Seu código de verificação é:</p>
         <h1><strong>{codigo}</strong></h1>
-        <p>Utilize este código para completar o processo de verificação.</p>
+        <p>Utilize este código para completar o processo de verificação, mas não demore pois ele expira em 10 minutos as {time}.</p>
         <p style="margin-bottom: 20px;">Se você não solicitou esta verificação, pode ignorar este e-mail.</p>
         <p>Atenciosamente,<br>Equipe de Verificação</p>
     </div>
