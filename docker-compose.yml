@@ -11,7 +11,7 @@ services:
         condition: service_started
     restart: always
     entrypoint: [ "/bin/bash", "-c"]
-    command: ["sleep infinity"]
+    command: ["python3 -m venv ./venv && source ./venv/bin/activate && pip install -r requirements.txt && python3 ./main.py"]
     volumes:
       - ./api:/usr/src/app
 
