@@ -97,7 +97,7 @@ def recuperar_senha_post():
         if checkCodigo is not None:
                 deleteCodigo(email)
         
-        insertCodigo(email, codigo_verificacao)
+        insertCodigo(email, sha256(codigo_verificacao.encode("utf-8")).hexdigest())
 
         envio_email = enviar_email(user_name, email, codigo_verificacao)
 
@@ -123,7 +123,6 @@ def verificar_codigo(email):
         return redirect(url_for("auth.login"))
 
 
-# Rota para verificar o código de verificação inserido pelo usuário
 @auth.route("/verificar_codigo", methods=["POST"])
 def verificar_codigo_post():
     codigo_inserido = ''
@@ -136,7 +135,7 @@ def verificar_codigo_post():
         "tb_verificacao_senha", "user_email", email, "verification_code"
     )
 
-    if codigo_gerado == int(codigo_inserido):
+    if codigo_gerado == sha256(int(codigo_inserido).encode("utf-8")).hexdigest():
         deleteCodigo(email)
         # session.pop("EmailVerificadoReset", None)
         return redirect(url_for("auth.Rota_da_nova_senha", email=email))
