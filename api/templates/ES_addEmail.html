@@ -197,12 +197,16 @@
 <body>
      <main>
           <div class="container">
-               <a href="login.html"> <img src="../static/image/x.svg" alt="Your Image"></a>
+               <a href="login.html"> <img src="/static/image/x.svg" alt="Your Image"></a>
           </div>
 
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          <div class="notification">{{ messages[0] }}</div>
+          {% endif %} {% endwith %}
+          
           <div>
-               <!-- <img src="../static/image/2gather.png" alt="" width="30%"> -->
-               <img src="../static/image/2gather.svg" alt="" width="40%">
+               <!-- <img src="/static/image/2gather.png" alt="" width="30%"> -->
+               <img src="/static/image/2gather.svg" alt="" width="40%">
                <h4>Esqueceu a senha? Não tem problema,<br> estamos aqui para ajudar.😊</h5>
           </div>
           <p style="margin-bottom: 0; color: #333333;">Digite seu e-mail para alterar sua senha.
@@ -240,7 +244,7 @@
 
           function redirectToPage() {
                if (checkAllFilled()) {
-                    window.location.href = "LoadingPage1.html";
+                    window.location.href = "LoadingPage1";
                }
           }
 

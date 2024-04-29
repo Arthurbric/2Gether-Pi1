@@ -148,3 +148,7 @@ def redefinir_senha_post():
     update_senha(email, sha256(senha.encode("utf-8")).hexdigest())
     flash("senha alterada com sucesso!")
     return redirect(url_for("auth.login"))
+
+@auth.route("/LoadingPage1")
+def LoadingPage1():
+    return render_template("LoadingPage1.html")

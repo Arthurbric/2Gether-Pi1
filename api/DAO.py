@@ -127,3 +127,12 @@ def update_senha(email, senha):
     cursor.execute(query)
     cnx.commit()
     cursor.close()
+
+def insert_municipio(estado, cidade):
+    cursor = cnx.cursor()
+    
+    query=("INSERT INTO tb_local (address_state, address_city) VALUES (%s, %s)")
+
+    cursor.execute(query, [estado, cidade])
+    cnx.commit()
+    cursor.close()

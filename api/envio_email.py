@@ -53,4 +53,4 @@ def enviar_email(user_name, user_email, codigo, time):
         return ( f"Oops! Parece que houve um problema ao enviar o e-mail. Por favor, tente novamente",0)
 
 if __name__ == "__main__":
-    print(enviar_email('guilherme', gerar_codigo, 'guilhermehzf@sempreceub.com'))
+    print(enviar_email('guilherme', 'guilhermehzf@sempreceub.com', gerar_codigo, 100))
