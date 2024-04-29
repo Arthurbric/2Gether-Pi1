@@ -19,12 +19,9 @@ CREATE TABLE IF NOT EXISTS tb_usuario(
 
 -- Tabela do endereço do evento
 CREATE TABLE IF NOT EXISTS tb_local(
-    local_id INT PRIMARY KEY AUTO_INCREMENT,
-    owner_supplier_id INT NOT NULL,
-    address VARCHAR(150) NOT NULL,
-    address_lat DECIMAL,
-    address_long DECIMAL,
-    FOREIGN KEY (owner_supplier_id) REFERENCES tb_usuario(user_id)
+    address_id INT PRIMARY KEY AUTO_INCREMENT,
+    address_state VARCHAR(2) NOT NULL,
+    address_city VARCHAR(90) NOT NULL
 );
 
 -- Tabela das categorias do evento
@@ -38,11 +35,12 @@ CREATE TABLE IF NOT EXISTS tb_eventos(
     event_id INT PRIMARY KEY AUTO_INCREMENT,
     owner_event INT NOT NULL,
     location_event INT NOT NULL,
+    location_address VARCHAR(150) NOT NULL,
     event_name VARCHAR(90) NOT NULL,
     event_category INT NOT NULL,
     event_description LONGTEXT,
     FOREIGN KEY (owner_event) REFERENCES tb_usuario(user_id),
-    FOREIGN KEY (location_event) REFERENCES tb_local(local_id),
+    FOREIGN KEY (location_event) REFERENCES tb_local(address_id),
     FOREIGN KEY (event_category) REFERENCES tb_categoria_eventos(category_id)
 );
 
@@ -51,6 +49,7 @@ CREATE TABLE IF NOT EXISTS tb_imagem_evento (
     image_id INT PRIMARY KEY AUTO_INCREMENT,
     image_event_id INT NOT NULL,
     event_images BLOB,
+    image_description VARCHAR(150),
     FOREIGN KEY (image_event_id) REFERENCES tb_eventos(event_id)
 );
 
