@@ -6,7 +6,17 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Document</title>
      <style>
-          
+          /* body {
+               background-image: url('https://cdn.discordapp.com/attachments/1221965249494909079/1228903097041158154/11.png?ex=662dbc32&is=661b4732&hm=b0cc2d1d6602c6ac53a37c65196113638fdbfc8245c35b99afcc7af8d5191d0a&');
+               background-size: cover;
+               background-repeat: no-repeat;
+               margin: 20% auto;
+               padding: 0;
+               position: relative;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+          } */
           body {
                background-image: url('https://cdn.discordapp.com/attachments/1221965249494909079/1228903097041158154/11.png?ex=662dbc32&is=661b4732&hm=b0cc2d1d6602c6ac53a37c65196113638fdbfc8245c35b99afcc7af8d5191d0a&');
                background-size: cover;
@@ -202,7 +212,7 @@
                <div class="inputbox">
                     <input name="email" type="text" id="name_input" required />
                </div>
-               <input type="submit" class="button" value="Recuperar a Senha" onclick="Enviar()" >
+               <input type="submit" class="button" value="Recuperar a Senha" onclick="Enviar()">
           </form>
           <!-- <button onclick="Enviar()"></button> -->
           <center>
@@ -214,19 +224,29 @@
      </main>
 </body>
 <script>
-     window.addEventListener("load", () => {
+      window.addEventListener("load", () => {
           const inputs = document.querySelectorAll("input");
           const button = document.querySelector(".button");
 
+          function checkAllFilled() {
+               let allFilled = true;
+               inputs.forEach(input => {
+                    if (!input.value) {
+                         allFilled = false;
+                    }
+               });
+               return allFilled;
+          }
+
+          function redirectToPage() {
+               if (checkAllFilled()) {
+                    window.location.href = "LoadingPage1.html";
+               }
+          }
+
           inputs.forEach(input => {
                input.addEventListener("keyup", () => {
-                    let allFilled = true;
-                    inputs.forEach(input => {
-                         if (!input.value) {
-                              allFilled = false;
-                         }
-                    });
-                    if (allFilled) {
+                    if (checkAllFilled()) {
                          button.classList.add("active");
                     } else {
                          button.classList.remove("active");
@@ -234,9 +254,9 @@
                });
           });
 
-          button.addEventListener("click", () => {
-               // Redirect to the desired page
-               window.location.href = "LoadingPage1.html";
+          button.addEventListener("click", (event) => {
+               event.preventDefault(); // Prevent the form submission
+               redirectToPage();
           });
      });
 
