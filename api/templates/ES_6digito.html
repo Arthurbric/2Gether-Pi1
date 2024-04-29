@@ -39,6 +39,7 @@
                justify-content: center;
                align-items: center;
           }
+
           main {
                background-color: #F5F5F5;
                padding: 20px;
@@ -190,71 +191,77 @@
                          <h1 style="font-size: xx-large;">Codigo de Verificação</h1>
                          <img src="../static/image/2gather.svg" width="200px">
                     </section>
-                    <form method="get">
-                    <section class="input">
-                         <p style="font-size:large">Insira o "Senha de Uso Único" que você recebeu em</p>
-                         <!-- Nome do  usuario  -->
-                         <b style="font-size: large; margin-top: 5%;">Arthur</b>
-                         <div class="inputs">
-                              <input type="number" />
-                              <input type="number" disabled />
-                              <input type="number" disabled />
-                              <input type="number" disabled />
-                              <input type="number" disabled />
-                              <input type="number" disabled />
-                              
-                         </div>
-                         <input type="submit" class="btn" value="Verificar" disabled>
-                    </section>
-                    
-               </form>
+                    <form method="get" id="verificationForm">
+                         <section class="input">
+                              <p style="font-size:large">Insira o "Senha de Uso Único" que você recebeu em</p>
+                              <!-- Nome do  usuario  -->
+                              <b style="font-size: large; margin-top: 5%;">Arthur</b>
+                              <div class="inputs">
+                                   <input type="number" />
+                                   <input type="number" disabled />
+                                   <input type="number" disabled />
+                                   <input type="number" disabled />
+                                   <input type="number" disabled />
+                                   <input type="number" disabled />
+
+                              </div>
+                              <input type="submit" class="btn" value="Verificar" disabled>
+                         </section>
+
+                    </form>
                </div>
                <script>
                     const inputs = document.querySelectorAll("input"),
-                          button = document.querySelector(".btn");
-                
+                         button = document.querySelector(".btn");
+                         const form = document.getElementById("verificationForm");
+
                     inputs.forEach((input, index1) => {
-                        input.addEventListener("keyup", (e) => {
-                            const currentInput = input,
-                                  nextInput = input.nextElementSibling,
-                                  prevInput = input.previousElementSibling;
-                
-                            if (currentInput.value.length > 1) {
-                                currentInput.value = "";
-                                return;
-                            }
-                
-                            if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-                                nextInput.removeAttribute("disabled");
-                                nextInput.focus();
-                            }
-                
-                            if (e.key === "Backspace") {
-                                inputs.forEach((input, index2) => {
-                                    if (index1 <= index2 && prevInput) {
-                                        input.setAttribute("disabled", true);
-                                        input.value = "";
-                                        prevInput.focus();
-                                    }
-                                });
-                            }
-                
-                            // Check if all inputs are filled
-                            const allInputsFilled = [...inputs].every(input => input.value !== "");
-                            if (allInputsFilled) {
-                                button.removeAttribute("disabled");
-                                button.classList.add("active");
-                            } else {
-                                button.setAttribute("disabled", true);
-                                button.classList.remove("active");
-                            }
-                        });
+                         input.addEventListener("keyup", (e) => {
+                              const currentInput = input,
+                                   nextInput = input.nextElementSibling,
+                                   prevInput = input.previousElementSibling;
+
+                              if (currentInput.value.length > 1) {
+                                   currentInput.value = "";
+                                   return;
+                              }
+
+                              if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                                   nextInput.removeAttribute("disabled");
+                                   nextInput.focus();
+                              }
+
+                              if (e.key === "Backspace") {
+                                   inputs.forEach((input, index2) => {
+                                        if (index1 <= index2 && prevInput) {
+                                             input.setAttribute("disabled", true);
+                                             input.value = "";
+                                             prevInput.focus();
+                                        }
+                                   });
+                              }
+
+                              // Check if all inputs are filled
+                              const allInputsFilled = [...inputs].every(input => input.value !== "");
+                              if (allInputsFilled) {
+                                   button.removeAttribute("disabled");
+                                   button.classList.add("active");
+                              } else {
+                                   button.setAttribute("disabled", true);
+                                   button.classList.remove("active");
+                              }
+                         });
                     });
-                
+
                     window.addEventListener("load", () => inputs[0].focus());
-                </script>
-                
-                
+                    form.addEventListener("submit", function(event) {
+                         event.preventDefault(); // Prevent the default form submission behavior
+                         // Replace "2test.html" with the URL of the outer page you want to redirect to
+                         window.location.href = "LoadingPage2.html";
+                    });
+               </script>
+
+
           </nav>
      </main>
 </body>
