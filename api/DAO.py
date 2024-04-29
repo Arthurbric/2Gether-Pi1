@@ -118,3 +118,12 @@ def deleteCodigo(email):
     cursor.execute(query)
     cnx.commit()
     cursor.close()
+
+def update_senha(email, senha):
+    cursor = cnx.cursor()
+
+    query=f"UPDATE tb_usuario set user_password = '{senha}' where user_email = '{email}'"
+
+    cursor.execute(query)
+    cnx.commit()
+    cursor.close()

@@ -98,6 +98,7 @@ def recuperar_senha_post():
             return redirect(url_for("auth.recuperar_senha"))
         else:
             session["EmailVerificadoReset"] = True
+            session["user_email"] = email
 
             flash(envio_email[0])
             return redirect(url_for("auth.verificar_codigo", email=email))
@@ -118,20 +119,32 @@ def verificar_codigo(email):
 @auth.route("/verificar_codigo", methods=["POST"])
 def verificar_codigo_post():
     codigo_inserido = ''
-    email = request.form.get("email")
+    email = session["user_email"]
     for num in range(1, 7):
         codigo_inserido += str(request.form.get(f"number_{num}"))
 
+    codigo_gerado = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code" )
 
-    codigo_gerado = selectFromWhere(
-        "tb_verificacao_senha", "user_email", email, "verification_code"
-    )
-
-    if codigo_gerado == sha256(int(codigo_inserido).encode("utf-8")).hexdigest():
+    if codigo_gerado == sha256(codigo_inserido.encode("utf-8")).hexdigest():
         deleteCodigo(email)
-        # session.pop("EmailVerificadoReset", None)
-        return redirect(url_for("auth.Rota_da_nova_senha", email=email))
+        return redirect(url_for("auth.redefinir_senha"))
 
     else:
         flash("Código de verificação incorreto. Por favor, tente novamente.")
         return redirect(url_for("auth.verificar_codigo", email=email))
+
+@auth.route("/redefinir_senha")
+def redefinir_senha():
+    return render_template("ES_TrocaSenha.html")
+
+@auth.route("/redefinir_senha", methods=["POST"])
+def redefinir_senha_post():
+    email = session["user_email"]
+    senha = request.form.get("senha")
+    confirmar_senha = request.form.get("confirmar_senha")
+    if senha != confirmar_senha:
+        flash("as senhas não coincidem")
+        return redirect(url_for("auth.redefinir_senha"))
+    update_senha(email, sha256(senha.encode("utf-8")).hexdigest())
+    flash("senha alterada com sucesso!")
+    return redirect(url_for("auth.login"))
