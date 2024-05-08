@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src="https://kit.fontawesome.com/33368fab86.js" crossorigin="anonymous"></script>
+     <title>Document</title>
+     <link rel="stylesheet" href="../static/CSS/style.css">
+     <link rel="icon" href="../static/image/icon.svg" type="image/x-icon">
+    
+     <SCRIPT language=JavaScript>
+
+          var message = "function disabled";
+
+          function rtclickcheck(keyp) {
+               if (navigator.appName == "Netscape" && keyp.which == 3) { alert(message); return false; }
+
+               if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; }
+          }
+
+          document.onmousedown = rtclickcheck;
+
+
+          function mousehandler(e) {
+               var myevent = (isNS) ? e : event;
+               var eventbutton = (isNS) ? myevent.which : myevent.button;
+               if ((eventbutton == 2) || (eventbutton == 3)) return false;
+          }
+          document.oncontextmenu = mischandler;
+          document.onmousedown = mousehandler;
+          document.onmouseup = mousehandler;
+          function disableCtrlKeyCombination(e) {
+               var forbiddenKeys = new Array("a", "s", "c", "x", "u");
+               var key;
+               var isCtrl;
+               if (window.event) {
+                    key = window.event.keyCode;
+                    //IE
+                    if (window.event.ctrlKey)
+                         isCtrl = true;
+                    else
+                         isCtrl = false;
+               }
+               else {
+                    key = e.which;
+                    //firefox
+                    if (e.ctrlKey)
+                         isCtrl = true;
+                    else
+                         isCtrl = false;
+               }
+               if (isCtrl) {
+                    for (i = 0; i < forbiddenKeys.length; i++) {
+                         //case-insensitive comparation
+                         if (forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase()) {
+                              return false;
+                         }
+                    }
+               }
+               return true;
+          }
+     </script>
+</head>
+<body oncontextmenu="return false">
+    <nav id="navBar" class="navbar-white">
+        <a href="index.html">
+        <img style="margin-left:  40%;" src="../static/image/2gather.png" class="logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Detales Sobre o Evento</a></li>
+            <!-- <li><a href="#">Travel Outside</a></li> -->
+            <!-- <li><a href="listing.html">Online Packages</a></li> -->
+        </ul>
+        <a href="#" class="register-btn">Register Now</a>
+        <i class="fa-solid fa-bars" onclick="togglebtn()"></i>
+    </nav>
+
+
+    <div class="house-details">
+        <div class="house-title">
+            <h1>Casa de Festas</h1>
+            <div class="row">
+                <div>
+                    <!-- estrelass   ★★☆   ⭐️⭐️    -->
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                     <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i><!-- ☆ -->
+                    <span>245 Reviews</span>
+                </div>
+                <div>
+                    <p>Localização: 907/908 SQN, Brasilia, Brazil</p>
+                </div>
+            </div>
+        </div>
+        <div class="gallery">
+            <!-- <div class="gallery-img-1 " ><img src="../static/image/t5.png" height="380px"></div>
+            <div><img class="hh" src="../static/image/t2.png"></div>
+            <div><img class="hh" src="../static/image/t3.png"></div>
+            <div><img class="hh" src="../static/image/t4.png"></div>
+            <div><img class="hh" src="../static/image/t1.png"></div> -->
+
+            <div class="gallery-img-1 " ><img src="https://www.baressp.com.br/barreporter/imgs2/Scandallo_Lounge_02-min.jpg" height="380px"></div>
+            <div><img class="hh" src="https://portalcafebrasil.com.br/wp-content/uploads/2017/03/admin-ajax-32.jpg"></div>
+            <div><img class="hh" src="../static/image/t3.png"></div>
+            <div><img class="hh" src="../static/image/t4.png"></div>
+            <div><img class="hh" src="../static/image/t1.png"></div>
+            
+        </div>
+        <div class="small-details">
+            <h2>Casa de Festa Hospedada por Arthur Arash</h2>
+            <p> Espaço para 40 &nbsp; &nbsp; 2 Quartos &nbsp; &nbsp; 3 Banheiros</p>
+            <h4>$R 100 / Diaria</h4>
+        </div>
+        <hr class="line">
+        <form class="check-form">
+            <div>
+                <!-- <label>Check In</label>
+                <input type="date" placeholder="Add Date" required > -->
+            </div>
+            <div>
+                <!-- <label>Check Out</label>
+                <input type="date" placeholder="Add Date" required> -->
+            </div>
+            <div class="guest-field">
+                <label style="font-size: 25px;">Hospedes</label>
+                <input type="number" min="1" max="60" placeholder="40" required style="font-size: 25px; margin-top: 10px;">
+            </div>
+            <div>
+               <button type="submit"> Verificar Disponibilidade</button>
+            </div>
+        </form>
+
+        <!-- <form class="check-form">
+            <div>
+                <label>Check In</label>
+                <input type="date" placeholder="Add Date" required >
+            </div>
+            <div>
+                <label>Check Out</label>
+                <input type="date" placeholder="Add Date" required>
+            </div>
+            <div class="guest-field">
+                <label>Hospedes</label>
+                <input type="number" min="1" max="60" placeholder="40" required>
+            </div>
+            <div>
+               <button type="submit">Verificar Disponibilidade</button>
+            </div>
+        </form> -->
+
+        <ul class="details-list">
+            <li><i class="fa-solid fa-house-chimney"></i>Casa Inteira
+                <Span>
+                    Você terá todo o apartamento para você
+                </Span>
+            </li>
+            <li><i class="fa-solid fa-paintbrush"></i>Limpeza Aprimorada
+                <Span>
+                    Este anfitrião se comprometeu com o processo de limpeza
+                </Span>
+            </li>
+            <li><i class="fa-solid fa-location-dot"></i>Ótima Localização
+                <Span>
+                    90% dos hóspedes recentes deram à localização uma classificação de 5 estrelas
+                </Span>
+            </li>
+            <li><i class="fa-solid fa-heart"></i>Excelente Experiência de Check-In
+                <Span>
+                    100% dos hóspedes recentes deram a esta experiência uma classificação de 5 estrelas
+                </Span>
+            </li>
+        </ul>
+
+        <hr class="line">
+
+        <p class="home-desc">
+            Os hóspedes serão alocados no térreo de acordo com a disponibilidade. 
+            Você obtém um confortável apartamento de dois quartos que proporciona uma verdadeira sensação 
+            de cidade. O preço cotado é para dois hóspedes. No campo de hóspedes, por favor, indique o 
+            número de hóspedes para obter o preço exato para grupos. Os hóspedes serão alocados no térreo
+             de acordo com a disponibilidade. Você obtém um confortável apartamento de dois quartos que 
+             proporciona uma verdadeira sensação de cidade.
+        </p>
+        <hr class="line">
+
+        <div class="map">
+            <h3>Localização no Mapa</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15358.800574551964!2d-47.91180044458006!3d-15.766994199999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3a46ff7ee93f%3A0xaceeb379d23571b7!2sCEUB!5e0!3m2!1sen!2sbr!4v1714350479936!5m2!1sen!2sbr"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <b>907/908 SQN, Brasilia, Brazil</b>
+                <p>É como uma casa longe de casa</p>
+        </div>
+        <hr class="line">
+        <div class="host">
+          <img src="../static/image/host.jpeg" >
+          <!-- <br> -->
+          <div>
+               <h2>Arthur Arash Briceno Heidari</h2>
+          <!-- <br> -->
+          <p>
+               <span>
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star"></i><!-- ★ -->
+                    <i class="fa-solid fa-star-half-stroke"></i>
+               </span>&nbsp; &nbsp; 245 Reviews &nbsp; &nbsp; Taxa de Resposta 100% &nbsp; &nbsp; Tempo de Resposta 60 minutos
+          </p>
+          </div>
+          
+        </div>
+        <a href="#" class="contact">Contatar Anfitrião</a>
+       
+    <div class="container">
+        <div class="footer">
+            <i class="fa fa-facebook" style="font-size:24px"></i>
+            <i class="fa fa-instagram" style="font-size:24px"></i>
+            <i class="fa fa-linkedin" style="font-size:24px"></i>
+            <i class="fa fa-twitter" style="font-size:24px"></i>
+            <i class="fa fa-youtube" style="font-size:24px"></i>
+            <hr>
+            <p>copyright @2024, 2Gather</p>
+    
+        </div>
+    </div>
+    
+
+
+
+    <script>
+     var navBar = document.getElementById("navBar");
+
+     function togglebtn() {
+          navBar.classList.toggle("hidemenu")
+     }
+</script>
+</body>
+
+
+</html>
