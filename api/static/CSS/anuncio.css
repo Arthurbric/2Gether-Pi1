@@ -1,0 +1,131 @@
+
+.bordinha{
+    margin: 50px;
+}
+
+body{
+    width: 100vw;
+        
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+main a{
+    cursor: pointer;
+}
+
+.vol{
+   display: flex;
+   text-align: center;
+   
+}
+  
+h1{
+    font-size: 4rem;
+}
+
+.voltar{
+    font-size: 30px;
+    background-color: transparent;
+    border-style: none;
+}
+
+.gray{
+    background-color: #F2F2F2;
+    margin: 0 25px;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 25px;
+}
+
+.gray p{
+    padding-inline-start: 10px;
+}
+
+h6{
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+main input{
+    font-size: 20px;
+    padding: 10px;
+    border: solid 2px #CECECE;
+    border-radius: 10px;
+    width: 90vw;
+}
+
+main textarea{
+    border: solid 2px #CECECE;
+    border-radius: 10px;
+    resize: none; /* Impede o redimensionamento */
+    width: 91vw; /* Defina a largura desejada */
+    height: 200px; /* Defina a altura desejada */
+    font-size: 15px;
+}
+
+main fieldset{
+    display: flex;
+    border: transparent;  
+    flex-direction: column;
+}
+
+input[type="checkbox"] {
+    transform: scale(2); /* Ajusta o tamanho */
+    margin-right: 10px;
+}
+
+.img{
+    border: dashed 5px black;
+    width: 300px;
+}
+
+input[type="image"]{
+    border: none;
+}
+
+.pula input{
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    transform: scale(2); /* Ajusta o tamanho */
+    margin-right: 10px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.btn{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: transparent;
+    border-radius: 10px;
+    width: 80vw;
+    height: 50px;
+    font-size: 2rem;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.btn:hover{
+    background-color: #CECECE;
+
+}
+
