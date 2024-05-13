@@ -24,12 +24,6 @@ CREATE TABLE IF NOT EXISTS tb_local(
     address_city VARCHAR(90) NOT NULL
 );
 
--- Tabela das categorias do evento
-CREATE TABLE IF NOT EXISTS tb_categoria_eventos (
-    category_id INT PRIMARY KEY AUTO_INCREMENT,
-    tipo_categoria VARCHAR(90) NOT NULL UNIQUE
-);
-
 -- Tabela do evento
 CREATE TABLE IF NOT EXISTS tb_eventos(
     event_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,11 +31,29 @@ CREATE TABLE IF NOT EXISTS tb_eventos(
     location_event INT NOT NULL,
     location_address VARCHAR(150) NOT NULL,
     event_name VARCHAR(90) NOT NULL,
-    event_category INT NOT NULL,
     event_description LONGTEXT,
+    event_instagram VARCHAR(90),
+    event_add_status BOOLEAN NOT NULL,
+    event_daily_price VARCHAR(90) NOT NULL,
+    event_size VARCHAR(20),
+    event_email VARCHAR(90),
+    event_telefone VARCHAR(90),
     FOREIGN KEY (owner_event) REFERENCES tb_usuario(user_id),
-    FOREIGN KEY (location_event) REFERENCES tb_local(address_id),
-    FOREIGN KEY (event_category) REFERENCES tb_categoria_eventos(category_id)
+    FOREIGN KEY (location_event) REFERENCES tb_local(address_id)
+);
+
+-- Tabela das categorias do evento
+CREATE TABLE IF NOT EXISTS tb_categoria (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_categoria VARCHAR(90) NOT NULL UNIQUE
+);
+
+-- Tabela da junçao entre as categorias e a tabela evento
+CREATE TABLE IF NOT EXISTS tb_evento_e_categoria (
+    event_id INT NOT NULL,
+    event_category INT NOT NULL,
+    FOREIGN KEY (event_id) REFERENCES tb_eventos(event_id),
+    FOREIGN KEY (event_category) REFERENCES tb_categoria(category_id)
 );
 
 -- Tabela das imagens dos eventos
