@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/33368fab86.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/CSS/style.css">
+    <link rel="icon" href="../static/image/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <SCRIPT language=JavaScript>
+
+        var message = "function disabled";
+
+        function rtclickcheck(keyp) {
+            if (navigator.appName == "Netscape" && keyp.which == 3) { alert(message); return false; }
+
+            if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; }
+        }
+
+        document.onmousedown = rtclickcheck;
+
+
+        function mousehandler(e) {
+            var myevent = (isNS) ? e : event;
+            var eventbutton = (isNS) ? myevent.which : myevent.button;
+            if ((eventbutton == 2) || (eventbutton == 3)) return false;
+        }
+        document.oncontextmenu = mischandler;
+        document.onmousedown = mousehandler;
+        document.onmouseup = mousehandler;
+        function disableCtrlKeyCombination(e) {
+            var forbiddenKeys = new Array("a", "s", "c", "x", "u");
+            var key;
+            var isCtrl;
+            if (window.event) {
+                key = window.event.keyCode;
+                //IE
+                if (window.event.ctrlKey)
+                    isCtrl = true;
+                else
+                    isCtrl = false;
+            }
+            else {
+                key = e.which;
+                //firefox
+                if (e.ctrlKey)
+                    isCtrl = true;
+                else
+                    isCtrl = false;
+            }
+            if (isCtrl) {
+                for (i = 0; i < forbiddenKeys.length; i++) {
+                    //case-insensitive comparation
+                    if (forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase()) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    </script>
+    <script>
+        $( function() {
+          $( "#accordion" ).accordion();
+        } );
+        </script>
+    <style>
+        h3 {
+            /* font-size: 40px; */
+        }
+
+        .ui-accordion {
+            text-align: center;
+        }
+
+        div {
+
+            /* background: linear-gradient(to right, #faf3dd, #aed9e0);
+            align-items: center; */
+        }
+
+        body {
+            /* background: url(../static/cars.jpg);
+            background-size: cover; */
+        }
+
+        tr {
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        }
+
+        td {
+            /* padding-right: 45px;
+            padding-left: 45px; */
+        }
+
+        table {
+            /* display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #cbf3f0, #ffbf69);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            font-size: 20px; */
+
+        }
+
+        a {
+            /* display: grid;
+            place-items: center;
+            font-size: 50px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            color: #ffba49;
+            text-decoration: underline;
+            background: radial-gradient(#a8dadc, #f1faee);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px; */
+        }
+
+        a:hover {
+            /* color: #fdfffc;
+            font-size: 70px;
+            background: radial-gradient(#ff9f1c, #2ec4b6); */
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false">
+    <nav id="navBar" class="navbar-white">
+        <a href="index.html">
+            <img style="margin-left:  40%;" src="../static/image/2gather.png" class="logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Detales Sobre o Evento</a></li>
+            <li><a href="#" class="active">Pesquisas</a></li>
+            <li><a href="#">Online Packages</a></li>
+        </ul>
+        <a href="#" class="register-btn">Register Now</a>
+        <i class="fa-solid fa-bars" onclick="togglebtn()"></i>
+    </nav>
+
+    <div id="accordion">
+        {{ dados | safe }}
+        </div>
+        
+        <br><br>
+        
+        <center>
+            <a href = "/go">Retornar ao Menu</a>
+        </center>
+
+    <!--
+
+        @app.route('/select1')
+def accordion():
+  banco = bd.SQL("root", "art88043101", "test_1")
+  comando = "select * from Automoveis ORDER BY  Modelo;"
+  cs = banco.consultar(comando, [])
+  dados = ""
+  for (Placa, Marca, Modelo, Ano, Valor_diaria,s_n, Cor, Qtd_Portas,chassi ) in cs:
+      dados += '''
+                  <h3>{}</h3>
+                  <div>
+                      <table>
+                        <tr>
+                          <td style='padding: 30px'>
+                            <p>Placa : {}</p>
+                            <p>Modelo : {}</p>
+                            <p>Valor diaria: R$ {}0  </p>
+                            <p>Cor : {} </p>
+                            <p>Quantidade de Portas : {}</p>
+                            <p>chassi : {} </p>
+                            <p>Ano : {} </p>
+                          </td>
+                          <td style='padding: 30px'>
+                             <img src="\static\{}.jpg" width="300px" height="200px">
+                          </td>
+                        </tr>
+                      </table>
+                  </div>
+               '''.format(Modelo,Placa,Marca,Valor_diaria,Cor,Qtd_Portas,chassi,Ano,Marca)
+  return render_template('accordion.html', dados = dados)
+  #Placa, Marca, Modelo, Ano, Valor_diaria,s_n, Cor, Qtd_Portas,chassi)
+
+    -->
+    <div class="container">
+        <div class="footer">
+            <i class="fa fa-facebook" style="font-size:24px"></i>
+            <i class="fa fa-instagram" style="font-size:24px"></i>
+            <i class="fa fa-linkedin" style="font-size:24px"></i>
+            <i class="fa fa-twitter" style="font-size:24px"></i>
+            <i class="fa fa-youtube" style="font-size:24px"></i>
+            <hr>
+            <p>copyright @2024, 2Gather</p>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var navBar = document.getElementById("navBar");
+
+        function togglebtn() {
+            navBar.classList.toggle("hidemenu")
+        }
+    </script>
+</body>
+
+
+</html>
