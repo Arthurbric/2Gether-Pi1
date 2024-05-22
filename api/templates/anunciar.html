@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
      <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-left.css' rel='stylesheet'>
      <title>Anuênciar </title>
 </head>
+
 <body>
      <main>
-          
+
           <div class="bordinha">
-               <form action="" method="POST">
+               <form action="" method="POST" enctype="multipart/form-data">
                     <a class="voltar">
                          <p class="vol"><i class="gg-arrow-left"></i> Voltar Para pagina principal</p>
                     </a>
@@ -22,50 +24,50 @@
 
                     <section>
                          <h6>Título*</h6>
-                         <input name="titulo" type="text" id="titulo" required placeholder="Título"/>
+                         <input name="titulo" type="text" id="titulo" required placeholder="Título" />
                     </section>
                     <section>
                          <h6>Descrição</h6>
-                         <textarea  name = "descricao" rows="10" cols="60"></textarea>
+                         <textarea name="descricao" rows="10" cols="60"></textarea>
                     </section>
                     <section>
                          <h6>Tipo*</h6>
-                    <div class="checkbox-container">
-                         <fieldset>           
-                              <input type="checkbox" name="show" id="iessh">
-                              <label for="iessh">show</label>
-                              <input type="checkbox" name="fera" id="iesfe">
-                              <label for="iesfe">feira</label>
-                              <input type="checkbox" name="empresarial" id="iesem">
-                              <label for="iesem">Empresarial</label>
-                              <input type="checkbox" name="Culinario/bebida" id="iescu">
-                              <label for="iescu">Culinario/bebida</label>
-                              <input type="checkbox" name="Esportivo" id="ieses">
-                              <label for="ieses">Esportivo</label>
-                              <input type="checkbox" name="automobilismo" id="iesau">
-                              <label for="iesau">automobilismo</label>
-                         </fieldset>
-                    </div>
+                         <div class="checkbox-container">
+                              <fieldset>
+                                   <input type="checkbox" name="tipos" value="show" id="iessh">
+                                   <label for="iessh">show</label>
+                                   <input type="checkbox" name="tipos" value="feira" id="iesfe">
+                                   <label for="iesfe">feira</label>
+                                   <input type="checkbox" name="tipos" value="empresarial" id="iesem">
+                                   <label for="iesem">Empresarial</label>
+                                   <input type="checkbox" name="tipos" value="culinario/bebida" id="iescu">
+                                   <label for="iescu">Culinario/bebida</label>
+                                   <input type="checkbox" name="tipos" value="esportivo" id="ieses">
+                                   <label for="ieses">Esportivo</label>
+                                   <input type="checkbox" name="tipos" value="automobilismo" id="iesau">
+                                   <label for="iesau">automobilismo</label>
+                              </fieldset>
+                         </div>
                     </section>
                     <section>
                          <h6>Foto</h6>
                          <p>Adicione até 7 fotos</p>
                          <div class="img">
-                              <input type="image">
-                              
+                              <input type="file" name="imagem" multiple>
+
                          </div>
                     </section>
                     <section>
                          <h6>Localizaçao*</h6>
-                          <div class="pula">
-                              <input name = "localizaçaocepext" type="text" required placeholder="Localização">
-                              <input name="localizaçaocep" type="text" required placeholder="CEP"/>
+                         <div class="pula">
+                              <input name="localizaçaocepext" type="text" required placeholder="Localização">
+                              <input name="localizaçaocep" type="text" required placeholder="CEP" />
                          </div>
                     </section>
                     <section>
                          <h6>contatos</h6>
                          <div class="pula">
-                              <input name="email" type="email" required placeholder="Email"/>
+                              <input name="email" type="email" required placeholder="Email" />
                               <input name="telefone" type="tel" required placeholder="(DDD) XXXX-XXXX">
                               <input name="Instagran" type="text" placeholder="Instagran">
                          </div>
@@ -73,27 +75,29 @@
                     <section>
                          <h6>Espaço aberto</h6>
                          <fieldset>
-                              <input type="radio" name="espaço" id="aberto"><label for="aberto">Aberto</label>
-                              <input type="radio" name="espaço" id="fechado"><label for="fechado">Fechado</label>
+                              <input type="radio" name="espaço" value="0" id="aberto"><label for="aberto">Aberto</label>
+                              <input type="radio" name="espaço" value="1" id="fechado"><label
+                                   for="fechado">Fechado</label>
                          </fieldset>
                     </section>
                     <section>
                          <h6>Valor da diaria</h6>
-                              <input name="Tamaho" type="number" required placeholder="Reais"/>
+                         <input name="valordiaria" type="number" required placeholder="Reais" />
                     </section>
                     <section>
                          <h6>Tamaho</h6>
-                              <input name="Tamaho" type="number" required placeholder="M²"/>
+                         <input name="Tamanho" type="number" required placeholder="M²" />
                     </section>
                     <section>
                          <h6>Numero maximo de pesssoas a serem compostados</h6>
-                              <input name="Tamaho" type="number" required placeholder="Numero de pesssoas"/>
+                         <input name="maxpessoas" type="number" required placeholder="Numero de pesssoas" />
                     </section>
                     <div class="meio">
-                      <button class="btn">Criar anuncio</button>
+                         <button class="btn">Criar anuncio</button>
                     </div>
                </form>
           </div>
      </main>
 </body>
+
 </html>

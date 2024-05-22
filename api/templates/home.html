@@ -1,116 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PL1</title>
     <link rel="stylesheet" href="../CSS/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 </head>
-    <body>
-        <header>
-            <a class="Logo" href="index.html">
-                <img  width="80" src="../static/yellow.jpg" alt="Logo da empresa"> 
-            </a>
-            <div class="search-container">
-                <div class="aoba">
-                    <input type="text" placeholder="Buscar" class="search-input">
-                    <select name="estado" id="estado" required>
-                        <option value="SP">SP</option>
-                    </select>
-                </div>
-                <button class="search-button">Buscar</button>
+
+<body>
+    <header>
+        <a class="Logo" href="index.html">
+            <img width="80" src="../static/yellow.jpg" alt="Logo da empresa">
+        </a>
+        <div class="search-container">
+            <div class="aoba">
+                <input type="text" placeholder="Buscar" class="search-input">
+                <select name="estado" id="estado" required>
+                    <option value="SP">SP</option>
+                </select>
             </div>
-            <nav>
-                <ul class="navl">
-                    <li><a href="">Notificação <i class="gg-bell"></i></a></li>            
-                </ul>
-            </nav>            
-            <ul class="dist">
-                <li><a  href="login.html"><button class="login">entrar</button></a></li>
-                <li><a  href="login.html"><button class="Anunciar">anuência</button></a></li>
+            <button class="search-button">Buscar</button>
+        </div>
+        <nav>
+            <ul class="navl">
+                <li><a href="">Notificação <i class="gg-bell"></i></a></li>
             </ul>
-        </header>
-        <main>
-            <div class="view"> 
-                
-                <div class ="anun">
-                    <a href="#">
-                        <img class="img" 
-                         src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510" alt="Imagem do anuncio">
-                        <p>Titulo do anuncio</p>
-                        <h3>valor do produto</h6>
+        </nav>
+        <ul class="dist">
+            <li><a href="login.html"><button class="login">entrar</button></a></li>
+            <li><a href="{{ url_for('criar_anuncio') }}"><button class="Anunciar">anuência</button></a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="view">
 
-                    </a>
-                </div>
-                <div class ="anun">
-                    <a href="#">
-                        <img class="img" 
-                         src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510" alt="Imagem do anuncio">
-                        <p>Titulo do anuncio</p>
-                        <h3>valor do produto</h6>
+            <div class="anun">
+                <a href="#">
+                    <img class="img"
+                        src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510"
+                        alt="Imagem do anuncio">
+                    <p>Titulo do anuncio</p>
+                    <h3>valor do produto</h6>
 
-                    </a>
-                </div><div class ="anun">
-                    <a href="#">
-                        <img class="img" 
-                         src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510" alt="Imagem do anuncio">
-                        <p>Titulo do anuncio</p>
-                        <h3>valor do produto</h6>
-
-                    </a>
-                </div><div class ="anun">
-                    <a href="#">
-                        <img class="img" 
-                         src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510" alt="Imagem do anuncio">
-                        <p>Titulo do anuncio</p>
-                        <h3>valor do produto</h6>
-
-                    </a>
-                </div>          
+                </a>
             </div>
-            <div class="ajuste">
-                <div class="pass">
-                    <button class="anterior"> &lt; Anterior </button>
-                    <button> 1 </button>
-                    <button> 2 </button>
-                    <button> 3 </button>
-                    <button> ... </button>
-                    <button> 43434 </button>
-                    <button class="proximo">Proximo &gt;</button>
+            <div class="anun">
+                <a href="#">
+                    <img class="img"
+                        src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510"
+                        alt="Imagem do anuncio">
+                    <p>Titulo do anuncio</p>
+                    <h3>valor do produto</h6>
+
+                </a>
+            </div>
+            <div class="anun">
+                <a href="#">
+                    <img class="img"
+                        src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510"
+                        alt="Imagem do anuncio">
+                    <p>Titulo do anuncio</p>
+                    <h3>valor do produto</h6>
+
+                </a>
+            </div>
+            <div class="anun">
+                <a href="#">
+                    <img class="img"
+                        src="https://lh3.googleusercontent.com/p/AF1QipPl1KOZmz71fmGN3J2XGNJI5_eSCkUmOSEezA-E=s680-w680-h510"
+                        alt="Imagem do anuncio">
+                    <p>Titulo do anuncio</p>
+                    <h3>valor do produto</h6>
+
+                </a>
+            </div>
+        </div>
+        <div class="ajuste">
+            <div class="pass">
+                <button class="anterior"> &lt; Anterior </button>
+                <button> 1 </button>
+                <button> 2 </button>
+                <button> 3 </button>
+                <button> ... </button>
+                <button> 43434 </button>
+                <button class="proximo">Proximo &gt;</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Sobre nós</h4>
+                    <ul>
+                        <li>
+                            <p class="sobre">twogether e seu parceiro confiável na arte de criar momentos
+                                inesquecíveis.<br> Sabemos que cada evento é único e merece um cenário especial. Por
+                                isso, dedicamo-nos a conectar você aos melhores espaços para a realização de eventos,
+                                sejam eles corporativos, sociais ou comemorativos.</p>
+                        </li>
+                        <li><a href="#">Saiba mais</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contatinos</h4>
+                    <ul>
+                        <li><a href="#">Solucionar problemas</a></li>
+                        <li>twogether@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Termos</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                    </ul>
                 </div>
             </div>
-        </main>
-         <footer class="footer">
-            <div class="container">        
-                <div class="row">
-                    <div class="footer-col">
-                        <h4>Sobre nós</h4>
-                        <ul>
-                            <li><p class="sobre">twogether e seu parceiro confiável na arte de criar momentos inesquecíveis.<br> Sabemos que cada evento é único e merece um cenário especial. Por isso, dedicamo-nos a conectar você aos melhores espaços para a realização de eventos, sejam eles corporativos, sociais ou comemorativos.</p></li>
-                            <li><a href="#">Saiba mais</a></li>
-                        </ul>
-                    </div>
-                        <div class="footer-col">
-                            <h4>Contatinos</h4>
-                            <ul>
-                                <li><a href="#">Solucionar problemas</a></li>
-                                <li>twogether@gmail.com</li>
-                            </ul>
-                        </div>
-                        <div class="footer-col">
-                            <h4>Termos</h4>
-                            <ul>
-                                <li><a href="#">Termos de uso</a></li>
-                                <li><a href="#">Política de privacidade</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>    
-        </footer>
-    </body>
-    <style>
-</html>
-
-
+        </div>
+    </footer>
+</body>
+<style>
+    </html>
