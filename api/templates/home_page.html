@@ -16,7 +16,7 @@
           <li><a href="#trending">Cidades Famosas</a></li>
           <li><a href="#about">Sobre</a></li>
         </ul>
-        <a href="{{ url_for("home") }}" class="register-btn">Cadastre Já</a>
+        <a href="{{ url_for("auth.login") }}" class="register-btn">Cadastre Já</a>
         <i class="fa-solid fa-bars"></i>
       </nav>
       <div class="container">
@@ -137,7 +137,7 @@
           Maximize sua renda compartilhando seu espaço<br />Junte-se à 2Gather e
           comece agora mesmo.
         </p>
-        <a href="#" class="cta-btn">Anuncie Agora</a>
+        <a href="{{ url_for("auth.login") }}" class="cta-btn">Anuncie Agora</a>
       </div>
 
       <div id="about" class="about-msg">
@@ -157,7 +157,7 @@
             memórias que durarão para sempre.
           </p>
         </div>
-        <a href="#" class="start-btn">Comece sua busca pelo local perfeito</a>
+        <a href="{{ url_for("auth.login") }}" class="start-btn">Comece sua busca pelo local perfeito</a>
       </div>
 
       <div class="footer">
