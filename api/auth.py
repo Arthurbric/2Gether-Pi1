@@ -1,4 +1,13 @@
-from flask import (render_template, request, Flask, Blueprint, flash, url_for, redirect, session)
+from flask import (
+    render_template,
+    request,
+    Flask,
+    Blueprint,
+    flash,
+    url_for,
+    redirect,
+    session,
+)
 from DAO import *
 from hashlib import sha256
 from envio_email import gerar_codigo, enviar_email
@@ -84,16 +93,22 @@ def recuperar_senha_post():
 
         codigo_verificacao = gerar_codigo()
         time = datetime.now().replace(microsecond=0)
-        checkCodigo = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code")
+        checkCodigo = selectFromWhere(
+            "tb_verificacao_senha", "user_email", email, "verification_code"
+        )
 
         if checkCodigo is not None:
-                deleteCodigo(email)
-        
-        insertCodigo(email, sha256(codigo_verificacao.encode("utf-8")).hexdigest(), time)
+            deleteCodigo(email)
 
-        envio_email = enviar_email(user_name, email, codigo_verificacao, time.strftime('%H:%M:%S'))
+        insertCodigo(
+            email, sha256(codigo_verificacao.encode("utf-8")).hexdigest(), time
+        )
 
-        if  envio_email[1] == 0:
+        envio_email = enviar_email(
+            user_name, email, codigo_verificacao, time.strftime("%H:%M:%S")
+        )
+
+        if envio_email[1] == 0:
             flash(envio_email[0])
             return redirect(url_for("auth.recuperar_senha"))
         else:
@@ -118,12 +133,14 @@ def verificar_codigo(email):
 
 @auth.route("/verificar_codigo", methods=["POST"])
 def verificar_codigo_post():
-    codigo_inserido = ''
+    codigo_inserido = ""
     email = session["user_email"]
     for num in range(1, 7):
         codigo_inserido += str(request.form.get(f"number_{num}"))
 
-    codigo_gerado = selectFromWhere("tb_verificacao_senha", "user_email", email, "verification_code" )
+    codigo_gerado = selectFromWhere(
+        "tb_verificacao_senha", "user_email", email, "verification_code"
+    )
 
     if codigo_gerado == sha256(codigo_inserido.encode("utf-8")).hexdigest():
         deleteCodigo(email)
@@ -133,9 +150,14 @@ def verificar_codigo_post():
         flash("Código de verificação incorreto. Por favor, tente novamente.")
         return redirect(url_for("auth.verificar_codigo", email=email))
 
+
 @auth.route("/redefinir_senha")
 def redefinir_senha():
-    return render_template("ES_TrocaSenha.html")
+    if "EmailVerificadoReset" in session and session["EmailVerificadoReset"] is True:
+        return render_template("ES_TrocaSenha.html")
+    else:
+        return redirect(url_for("auth.login"))
+
 
 @auth.route("/redefinir_senha", methods=["POST"])
 def redefinir_senha_post():
@@ -147,7 +169,10 @@ def redefinir_senha_post():
         return redirect(url_for("auth.redefinir_senha"))
     update_senha(email, sha256(senha.encode("utf-8")).hexdigest())
     flash("senha alterada com sucesso!")
+    session["EmailVerificadoReset"] = False
+    session["user_email"] = None
     return redirect(url_for("auth.login"))
+
 
 @auth.route("/LoadingPage1")
 def LoadingPage1():

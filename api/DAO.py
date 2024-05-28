@@ -22,18 +22,19 @@ import mysql.connector
 #         host="127.0.0.1",
 #         database="db_eventos",
 #         )
-        
+
 #     except:
 #         print("nenhuma conexão encontrada")
 
 cnx = mysql.connector.connect(
-        user="root",
-        password="passywassy",
-        host="127.0.0.1",
-        database="db_eventos",
-        )
-          
+    user="root",
+    password="05102003M@th",
+    host="127.0.0.1",
+    database="db_eventos",
+)
+
 print(cnx.is_connected())
+
 
 def CheckLogin(user, senha):
     query = (
@@ -86,7 +87,7 @@ def selectFromWhere(tabela, campoReferencia, valorReferencia, campoBuscado="*"):
 
     if querySet == None:
         return querySet
-    
+
     else:
         result = querySet[0]
 
@@ -137,57 +138,96 @@ def deleteCodigo(email):
     cnx.commit()
     cursor.close()
 
+
 def update_senha(email, senha):
     cursor = cnx.cursor()
 
-    query=f"UPDATE tb_usuario set user_password = '{senha}' where user_email = '{email}'"
+    query = (
+        f"UPDATE tb_usuario set user_password = '{senha}' where user_email = '{email}'"
+    )
 
     cursor.execute(query)
     cnx.commit()
     cursor.close()
 
+
 def insert_municipio(estado, cidade):
     cursor = cnx.cursor()
-    
-    query=("INSERT INTO tb_local (address_state, address_city) VALUES (%s, %s)")
+
+    query = "INSERT INTO tb_local (address_state, address_city) VALUES (%s, %s)"
 
     cursor.execute(query, [estado, cidade])
     cnx.commit()
     cursor.close()
 
+
 def convertToBinaryData(filename):
     # Convert digital data to binary format
-    with open(filename, 'rb') as file:
+    with open(filename, "rb") as file:
         binaryData = file.read()
     return binaryData
 
-#caso valor nulo adicionar valor padrão?
-def insert_anuncio(user_email, estado, cidade, location_address, event_name, event_add_status, event_daily_price, event_size, event_email, event_telefone, event_instagram, event_description):
+
+# caso valor nulo adicionar valor padrão?
+def insert_anuncio(
+    user_email,
+    estado,
+    cidade,
+    location_address,
+    event_name,
+    event_add_status,
+    event_daily_price,
+    event_size,
+    event_email,
+    event_telefone,
+    event_instagram,
+    event_description,
+):
     cursor = cnx.cursor()
-    
-    query = ("""INSERT INTO tb_eventos (owner_event, location_event, location_address, event_name, event_description,
+
+    query = """INSERT INTO tb_eventos (owner_event, location_event, location_address, event_name, event_description,
             event_instagram, event_add_status, event_daily_price, event_size, event_email, event_telefone)
              VALUES ((SELECT user_id FROM tb_usuario WHERE user_email = %s), (SELECT address_id FROM tb_local WHERE address_state = %s AND address_city = %s), 
              %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+    cursor.execute(
+        query,
+        [
+            user_email,
+            estado,
+            cidade,
+            location_address,
+            event_name,
+            event_description,
+            event_instagram,
+            event_add_status,
+            event_daily_price,
+            event_size,
+            event_email,
+            event_telefone,
+        ],
     )
-    cursor.execute(query, [user_email, estado, cidade, location_address, event_name, event_description, event_instagram, event_add_status,  event_daily_price, event_size, event_email, event_telefone])
     cnx.commit()
-    
+
+
 def insert_evento_e_categoria(event_id, event_category):
     cursor = cnx.cursor()
-    query = ("INSERT INTO tb_evento_e_categoria (event_id, event_category)"
-             "VALUES (%s, (SELECT category_id FROM tb_categoria WHERE tipo_categoria = %s))"
-             )
+    query = (
+        "INSERT INTO tb_evento_e_categoria (event_id, event_category)"
+        "VALUES (%s, (SELECT category_id FROM tb_categoria WHERE tipo_categoria = %s))"
+    )
     cursor.execute(query, [event_id, event_category])
     cnx.commit()
-    
+
+
 def get_event_id(user_email, estado, cidade, location_address, event_name, event_size):
     cursor = cnx.cursor()
 
-    query = ("""SELECT event_id FROM tb_eventos WHERE (SELECT user_id FROM tb_usuario WHERE user_email = %s) AND 
+    query = """SELECT event_id FROM tb_eventos WHERE (SELECT user_id FROM tb_usuario WHERE user_email = %s) AND 
              (SELECT address_id FROM tb_local WHERE address_state = %s AND address_city = %s) 
-             AND location_address = %s AND event_name = %s AND event_size = %s LIMIT 0, 1""" )
-    cursor.execute(query, [user_email, estado, cidade, location_address, event_name, event_size])
+             AND location_address = %s AND event_name = %s AND event_size = %s LIMIT 0, 1"""
+    cursor.execute(
+        query, [user_email, estado, cidade, location_address, event_name, event_size]
+    )
 
     # querySet = cursor.fetchone()
 
@@ -201,7 +241,7 @@ def get_event_id(user_email, estado, cidade, location_address, event_name, event
 
     if querySet == None:
         print("im die")
-    
+
     else:
         result = querySet[0]
 
@@ -210,19 +250,16 @@ def get_event_id(user_email, estado, cidade, location_address, event_name, event
         cursor.close()
 
         return result
-    
+
 
 def insertBLOB(image_event_id, event_image, image_description):
-        print("função insertBLOB iniciada")
-        cursor = cnx.cursor()
-        sql_insert_blob_query = """ INSERT INTO tb_imagem_evento
+    print("função insertBLOB iniciada")
+    cursor = cnx.cursor()
+    sql_insert_blob_query = """ INSERT INTO tb_imagem_evento
                           (image_event_id, event_images, image_description) VALUES (%s,%s,%s)"""
 
-        
-        
-
-        # Convert data into tuple format
-        insert_blob_tuple = (image_event_id, event_image, image_description)
-        cursor.execute(sql_insert_blob_query, insert_blob_tuple)
-        cnx.commit()
-        cursor.close()
+    # Convert data into tuple format
+    insert_blob_tuple = (image_event_id, event_image, image_description)
+    cursor.execute(sql_insert_blob_query, insert_blob_tuple)
+    cnx.commit()
+    cursor.close()

@@ -8,34 +8,42 @@ app.register_blueprint(auth)
 
 app.secret_key = "uhrq3ur23guyrh"
 
+
 def get_address_info(cep):
     url = f"https://api.brasilaberto.com/v1/zipcode/{cep}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
-        city = data['result']['city']
-        state = data['result']['stateShortname']
+        city = data["result"]["city"]
+        state = data["result"]["stateShortname"]
         return city, state
     else:
         return None, None
+
 
 @app.route("/")
 def default():
     return redirect(url_for("home"))
 
+
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("home_page.html")
+
 
 # @app.route("/criar_anuncio")
 # def criar_anuncio():
-#     return render_template("anunciar.html")
+#   if "loggedin" in session and session["loggedin"] is True:
+#       return render_template("anunciar.html")
+#   else:
+#       return render_template(url_for("auth.login"))
+
 
 @app.route("/criar_anuncio", methods=["POST", "GET"])
 def criar_anuncio():
     if request.method == "POST":
-        email =  session["email"]
+        email = session["email"]
         titulo = request.form.get("titulo")
         descricao = request.form.get("descricao")
         tipos = request.form.getlist("tipos")
@@ -45,17 +53,16 @@ def criar_anuncio():
         email_contato = request.form.get("email")
         telefone = request.form.get("telefone")
         instagram = request.form.get("Instagran")
-        espaco_bool = request.form.get("espaço") 
+        espaco_bool = request.form.get("espaço")
         tamanho = request.form.get("Tamanho")
         valor_diaria = request.form.get("valordiaria")
 
         cidade, estado = get_address_info(cep)
-        
 
         print("Email:", email)
         print("Título:", titulo)
         print("Descrição:", descricao)
-        print("Tipos de eventos:", tipos) 
+        print("Tipos de eventos:", tipos)
         print("Local:", local)
         print("cidade:", cidade)
         print("estado:", estado)
@@ -66,17 +73,30 @@ def criar_anuncio():
         print("Tamanho:", tamanho)
 
         # primeira operação de inserção
-        insert_anuncio(email, estado, cidade, local, titulo, 1, valor_diaria, tamanho, email_contato, telefone, instagram, descricao)
+        insert_anuncio(
+            email,
+            estado,
+            cidade,
+            local,
+            titulo,
+            1,
+            valor_diaria,
+            tamanho,
+            email_contato,
+            telefone,
+            instagram,
+            descricao,
+        )
         # pegar id do evento para fazer inserção em eventos_categorias e imagens
         id_anuncio = get_event_id(email, estado, cidade, local, titulo, tamanho)
-        #fazer a inserção de cada imagem
+        # fazer a inserção de cada imagem
         for imagem in imagens:
-                if imagem.filename != '':
-                    print("condicional de filename ok")
-                    image_data = imagem.read()
-                    image_description = "Descrição da imagem" 
-                    insertBLOB(id_anuncio, image_data, image_description)
-        #fazer a inserção em tb_evento_e_categoria
+            if imagem.filename != "":
+                print("condicional de filename ok")
+                image_data = imagem.read()
+                image_description = "Descrição da imagem"
+                insertBLOB(id_anuncio, image_data, image_description)
+        # fazer a inserção em tb_evento_e_categoria
         for tipo in tipos:
             insert_evento_e_categoria(id_anuncio, tipo)
 
@@ -84,7 +104,7 @@ def criar_anuncio():
 
     return render_template("anunciar.html")
 
+
 if __name__ == "__main__":
     print(f"o host do data base:\033[32m{cnx._host}\033[m")
     app.run(debug=True, use_reloader=True, host="0.0.0.0", port="3030")
-    
