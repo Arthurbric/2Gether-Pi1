@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS tb_eventos(
     event_description LONGTEXT,
     event_instagram VARCHAR(90),
     event_add_status BOOLEAN NOT NULL,
+    event_space BOOLEAN NOT NULL,
     event_daily_price VARCHAR(90) NOT NULL,
     event_size VARCHAR(20),
     event_email VARCHAR(90),
