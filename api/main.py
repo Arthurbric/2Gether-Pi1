@@ -32,16 +32,24 @@ def home():
     return render_template("home_page.html")
 
 
-# @app.route("/criar_anuncio")
-# def criar_anuncio():
-#   if "loggedin" in session and session["loggedin"] is True:
-#       return render_template("anunciar.html")
-#   else:
-#       return render_template(url_for("auth.login"))
+@app.route("/editar_perfil")
+def editar_perfil():
+    if "loggedin" in session and session["loggedin"] is True:
+        return render_template("dadosPessoal.html")
+    else:
+        return render_template(url_for("auth.login"))
+
+
+@app.route("/criar_anuncio")
+def criar_anuncio():
+    if "loggedin" in session and session["loggedin"] is True:
+        return render_template("anunciar.html")
+    else:
+        return render_template(url_for("auth.login"))
 
 
 @app.route("/criar_anuncio", methods=["POST", "GET"])
-def criar_anuncio():
+def criar_anuncio_POST():
     if request.method == "POST":
         email = session["email"]
         titulo = request.form.get("titulo")
@@ -106,5 +114,4 @@ def criar_anuncio():
 
 
 if __name__ == "__main__":
-    print(f"o host do data base:\033[32m{cnx._host}\033[m")
     app.run(debug=True, use_reloader=True, host="0.0.0.0", port="3030")

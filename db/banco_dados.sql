@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS tb_usuario(
     user_email VARCHAR(90) NOT NULL UNIQUE,
     user_password VARCHAR(90) NOT NULL,
     user_cpf VARCHAR(90) NOT NULL UNIQUE,
-    user_uf VARCHAR(2),
+    user_phone VARCHAR(14),
     user_image BLOB,
     user_type BOOLEAN
 );
