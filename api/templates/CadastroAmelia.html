@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" type="x-icon" href="static/Vector.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Hind:wght@600&display=swap" rel="stylesheet" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Bruno Ace', cursive;
+      font-family: 'Hind', sans-serif;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(29deg, #f1ebeb, #d7d7d7, #9c9c9c);
+      background-size: 400% 400%;
+      animation: animate 12s ease infinite;
+      padding: 0;
+      color: white;
+    }
+
+    @keyframes animate {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .form-box {
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      position: relative;
+      width: 400px;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e6e6e6;
+      color: #222222;
+      border-radius: 60px;
+      box-shadow: -6px -6px 15px #f8f8f8, 6px 6px 15px #7a7a7a;
+    }
+
+    .notification {
+      display: none;
+      font-size: 1.4em;
+      color: #3636CC;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    h2 {
+      font-size: 3em;
+      color: #000000;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #hi {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .inputbox {
+      position: relative;
+      margin: 30px 0;
+      width: 310px;
+      background-color: rgb(255, 255, 255);
+      opacity: 1;
+      border-radius: 15px;
+      border-bottom: 3px solid #000000;
+    }
+
+    .inputbox input {
+      width: 100%;
+      height: 50px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      padding: 0 35px 0 5px;
+      color: #000000;
+    }
+
+    .inputbox ion-icon {
+      position: absolute;
+      right: 8px;
+      color: #000000;
+      font-size: 1.2em;
+      top: 17px;
+    }
+
+    .forget {
+      margin: -15px 0 15px;
+      font-size: 1em;
+      color: #000000;
+      display: flex;
+      justify-content: center;
+    }
+
+    .forget label a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .forget label a:hover {
+      color: #1B66C9;
+      text-decoration: underline;
+    }
+
+    #omg {
+      margin-left: 5px;
+    }
+
+    button {
+      width: 100%;
+      height: 40px;
+      border-radius: 40px;
+      background: #ffffff;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      border-bottom: #000000 solid 1px;
+    }
+
+    .register {
+      font-size: 1em;
+      color: #000000;
+      text-align: center;
+      margin: 15px 0 50px 0px;
+    }
+
+    .register p a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .register p a:hover {
+      color: #3636CC;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="form-box">
+      <div class="form-value">
+        <h2>Cadastro</h2>
+        <form action="/cadastro" method="post" onsubmit="showNotification(event)">
+          <div id="hi">
+            <div>
+              <div class="inputbox">
+                <ion-icon name="person"></ion-icon>
+                <input name="nome1" type="text" required placeholder="Nome">
+              </div>
+              <div class="inputbox">
+                <ion-icon name="person"></ion-icon>
+                <input name="nome2" type="text" required placeholder="Sobrenome">
+              </div>
+              <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input name="email" type="text" id="name_input" required placeholder="Email" />
+              </div>
+              <div class="inputbox">
+                <ion-icon name="card"></ion-icon>
+                <input name="cpf" type="text" required placeholder="CPF">
+              </div>
+              <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input name="senha" type="password" id="password_input" required placeholder="Senha" />
+              </div>
+              <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input name="verificação de senha" type="password" id="password_input" required placeholder="verificação de senha" />
+              </div>
+              <div class="forget">
+                <label for="habi">
+                  <input type="checkbox" id="habi" />
+                  <label id="omg" for="smt"> Eu li e aceito os</label>
+                  <a href="https://www.frenet.com.br/wp-content/uploads/2022/01/politica-de-privacidade.png">
+                    Termos de Uso
+                  </a>
+                </label>
+              </div>
+              <button type="submit">Registrar</button>
+
+              <div class="register">
+                <p>
+                  <b><i>Já tenho uma conta? </i></b>&nbsp;
+                  <a href="{{ url_for('auth.login') }}">Logar</a>
+                </p>
+              </div>
+            </div>
+        </form>
+        <div class="notification" id="notification">
+          Seu cadastro foi enviado com sucesso!
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    const inputs = document.querySelectorAll("input[name='senha'], input[name='verificação de senha']");
+    const checkbox = document.getElementById("habi");
+    const button = document.querySelector("button[type='submit']");
+
+    inputs.forEach(input => {
+        input.addEventListener("keyup", () => {
+            checkFormValidity();
+        });
+    });
+
+    checkbox.addEventListener("change", () => {
+        checkFormValidity();
+    });
+
+    function checkFormValidity() {
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (!input.value) {
+                allFilled = false;
+            }
+        });
+
+        const password1 = inputs[0].value;
+        const password2 = inputs[1].value;
+
+        if (allFilled && password1 === password2 && hasSpecialCharacter(password1) && password1.length >= 8 && checkbox.checked) {
+            button.classList.add("active");
+        } else {
+            button.classList.remove("active");
+        }
+    }
+
+    window.addEventListener("load", () => inputs[0].focus());
+
+    function hasSpecialCharacter(password) {
+        const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+        return specialCharacters.test(password);
+    }
+
+    function showNotification(event) {
+      event.preventDefault(); // Prevent form submission
+      const notification = document.getElementById("notification");
+      notification.style.display = "block"; // Show the notification
+      setTimeout(() => {
+        notification.style.display = "none"; // Hide the notification after 3 seconds
+        document.querySelector("form").submit(); // Submit the form
+      }, 3000);
+    }
+  </script>
+</body>
+
+</html>
