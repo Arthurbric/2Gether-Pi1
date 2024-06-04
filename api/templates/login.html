@@ -341,6 +341,11 @@
 </head>
 
 <body>
+
+  <!-- Pode trocar 1 e para Sucesso e -1 para erro -->
+  <section id="numero" style="display: none;">-1</section> 
+  <!-- Pode trocar 1 e para Sucesso e -1 para erro -->
+
   <main>
     <div class="form-box">
       <div class="form-value">
@@ -416,27 +421,43 @@
     </div>
 
     <script>
-        var numero = 0; // // Pode trocar 1 e para Sucesso e -1 para erro 
+        // var numero = 0; // // Pode trocar 1 e para Sucesso e -1 para erro 
+
+        // function toggleDisplay() {
+        //     var certoDiv = document.getElementById("Certo");
+        //     var erroDiv = document.getElementById("Erro");
+
+        //     if (numero === 1) {
+        //         certoDiv.style.display = "";
+        //         erroDiv.style.display = "none";
+        //     }
+        //     else if (numero === -1) {
+        //         certoDiv.style.display = "none";
+        //         erroDiv.style.display = "";
+        //     }
+        //     else {
+        //         certoDiv.style.display = "none";
+        //         erroDiv.style.display = "none";
+        //     }
+        // }
+
+        var numero = document.getElementById("numero").textContent;
 
         function toggleDisplay() {
             var certoDiv = document.getElementById("Certo");
             var erroDiv = document.getElementById("Erro");
 
-            if (numero === 1) {
+            if (numero === "1") {
                 certoDiv.style.display = "";
                 erroDiv.style.display = "none";
-            }
-            else if (numero === -1) {
+            } else if (numero === "-1") {
                 certoDiv.style.display = "none";
                 erroDiv.style.display = "";
-            }
-            else {
+            } else {
                 certoDiv.style.display = "none";
                 erroDiv.style.display = "none";
             }
         }
-
-
         toggleDisplay();
 
         document.addEventListener('DOMContentLoaded', function () {
