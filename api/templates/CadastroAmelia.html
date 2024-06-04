@@ -257,48 +257,41 @@
             width: 280px;
             position: absolute;
             transform: translate(-50%, -50%);
-            top: 50%;
-            left: 47%;
+            top: 10%;
+            left: 48.5%;
             /* margin: 20px auto; */
         }
 
-        .toast {
+        .toast { 
+            /* caixa */
             width: 100%;
-            height: 40px;
+            height: 60px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 7px;
             display: grid;
             grid-template-columns: 1.3fr 6fr 0.5fr;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+
+            background-color: #e6e6e6;
+            color: #222222;
+            border-radius: 60px;
+            border-color: #00000000;
+            cursor: pointer;
+            box-shadow: -6px -6px 15px #f8f8f8,
+                6px 6px 15px #7a7a7a;
         }
 
         .success {
-            border-left: 3px solid #47D764;
+            border-left: 5px solid #47D764;
         }
 
         .error {
-            border-left: 3px solid #ff355b;
-        }
-
-        .info {
-            border-left: 3px solid #2F86EB;
-        }
-
-        .warning {
-            border-left: 3px solid #FFC021;
+            border-left: 5px solid #ff355b;
         }
 
         .error i {
             color: #ff355b;
-        }
-
-        .info i {
-            color: #2F86EB;
-        }
-
-        .warning i {
-            color: #FFC021;
         }
 
         .toast:not(:last-child) {
@@ -333,7 +326,7 @@
         .toast button {
             align-self: flex-start;
             background-color: transparent;
-            font-size: 20px;
+            font-size: 30px;
             color: #656565;
             line-height: 0;
             cursor: pointer;
@@ -408,51 +401,63 @@
 
 
         <div class="wrapper">
-            <div class="toast success" style="display: none;">
+
+            <div id="Certo" class="toast success" style="display:none ;">
                 <div class="outer-container">
                     <i class="fas fa-check-circle"></i>
                 </div>
                 <div class="inner-container">
+                    <p>sucesso</p>
+                    <!-- <p>Seu cadastro foi concluído com sucesso</p> -->
                     {% with messages = get_flashed_messages() %} {% if messages %}
-                    <div class="notification">{{ messages[0] }}</div>
+                    <p class="notification">{{ messages[0] }}</p>
                     {% endif %} {% endwith %}
                 </div>
                 <button class="close">&times;</button>
             </div>
-            <!-- <div class="toast error">
-            <div class="outer-container">
-                <i class="fas fa-times-circle"></i>
-            </div>
-            <div class="inner-container">
-                <p>Error</p>
-                <p>Error has occurred while saving changes.</p>
-            </div>
-            <button class="close">&times;</button>
-        </div> -->
-            <!-- <div class="toast info">
-            <div class="outer-container">
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="inner-container">
-                <p>Info</p>
-                <p>New settings available on your account.</p>
-            </div>
-            <button class="close">&times;</button>
-        </div> -->
-            <div class="toast warning" style="display: none;">
+
+
+            <div id="Erro" class="toast error" style="display: none ;">
                 <div class="outer-container">
-                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-times-circle"></i>
                 </div>
                 <div class="inner-container">
+                    <p>Erro</p>
+                    <!-- <p >Já existe um cadastrado com dados similares</p> -->
                     {% with messages = get_flashed_messages() %} {% if messages %}
-                    <div class="notification">{{ messages[0] }}</div>
+                    <p class="notification">{{ messages[0] }}</p>
                     {% endif %} {% endwith %}
                 </div>
                 <button class="close">&times;</button>
             </div>
+
+
         </div>
 
         <script>
+            var numero = 0; // Pode trocar 1 e para Sucesso e -1 para erro 
+
+            function toggleDisplay() {
+                var certoDiv = document.getElementById("Certo");
+                var erroDiv = document.getElementById("Erro");
+
+                if (numero === 1) {
+                    certoDiv.style.display = "";
+                    erroDiv.style.display = "none";
+                }
+                else if (numero === -1) {
+                    certoDiv.style.display = "none";
+                    erroDiv.style.display = "";
+                }
+                else {
+                    certoDiv.style.display = "none";
+                    erroDiv.style.display = "none";
+                }
+            }
+
+
+            toggleDisplay();
+
             document.addEventListener('DOMContentLoaded', function () {
                 const closeButtons = document.querySelectorAll('.close');
                 closeButtons.forEach(button => {
@@ -462,59 +467,57 @@
                     });
                 });
             });
-            const registryButton = document.getElementById("registryButton");
-            const registryContent = document.querySelector(".registry-content");
 
-            registryButton.addEventListener("click", function () {
-                registryContent.style.display = "block";
-            });
 
-            const inputs = document.querySelectorAll("input[name='senha'], input[name='verificação de senha']");
-            const checkbox = document.getElementById("habi");
-            const button = document.querySelector("button");
 
-            inputs.forEach(input => {
-                input.addEventListener("keyup", () => {
-                    checkFormValidity();
-                });
-            });
-
-            checkbox.addEventListener("change", () => {
-                checkFormValidity();
-            });
-
-            function checkFormValidity() {
-                let allFilled = true;
-                inputs.forEach(input => {
-                    if (!input.value) {
-                        allFilled = false;
-                    }
-                });
-
-                const password1 = inputs[0].value;
-                const password2 = inputs[1].value;
-
-                // Check if passwords match and contain a special character and are at least 8 characters long
-                if (allFilled && password1 === password2 && hasSpecialCharacter(password1) && password1.length >= 8 && checkbox.checked) {
-                    button.classList.add("active");
-                } else {
-                    button.classList.remove("active");
-                }
-            }
-
-            window.addEventListener("load", () => inputs[0].focus());
-
-            function hasSpecialCharacter(password) {
-                const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
-                return specialCharacters.test(password);
-            }
-
-            function Enviar() {
-                alert("seu cadastro foi enviado com sucesso!");
-            }
         </script>
 
     </nav>
+    <script>
+        const inputs = document.querySelectorAll("input[name='senha'], input[name='verificação de senha']");
+        const checkbox = document.getElementById("habi");
+        const button = document.querySelector("button");
+
+        inputs.forEach(input => {
+            input.addEventListener("keyup", () => {
+                checkFormValidity();
+            });
+        });
+
+        checkbox.addEventListener("change", () => {
+            checkFormValidity();
+        });
+
+        function checkFormValidity() {
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (!input.value) {
+                    allFilled = false;
+                }
+            });
+
+            const password1 = inputs[0].value;
+            const password2 = inputs[1].value;
+
+            // Check if passwords match and contain a special character and are at least 8 characters long
+            if (allFilled && password1 === password2 && hasSpecialCharacter(password1) && password1.length >= 8 && checkbox.checked) {
+                button.classList.add("active");
+            } else {
+                button.classList.remove("active");
+            }
+        }
+
+        window.addEventListener("load", () => inputs[0].focus());
+
+        function hasSpecialCharacter(password) {
+            const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+            return specialCharacters.test(password);
+        }
+
+        function Enviar() {
+            alert("seu cadastro foi enviado com sucesso!");
+        }
+    </script>
 </body>
 
 </html>
