@@ -118,6 +118,22 @@ def insertCadastro(email, senha, nome1, nome2, cpf):
     cursor.close()
 
 
+def updateCadastro(id, nome, email, telefone):
+    cursor = cnx.cursor()
+    query = "UPDATE tb_usuario SET user_name = %s, user_email = %s, user_phone = %s WHERE user_id = %s"
+    cursor.execute(query, [nome, email, telefone, id])
+    cnx.commit()
+    cursor.close()
+
+
+def updateSenha(id, senha):
+    cursor = cnx.cursor()
+    query = "UPDATE tb_usuario SET user_password = %s WHERE user_id = %s"
+    cursor.execute(query, [senha, id])
+    cnx.commit()
+    cursor.close()
+
+
 def insertCodigo(email, verification_code, time):
     cursor = cnx.cursor()
     query = (

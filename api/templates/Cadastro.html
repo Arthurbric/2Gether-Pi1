@@ -2,138 +2,140 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="shortcut icon" type="x-icon" href="static/Vector.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Hind:wght@600&display=swap" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="static/CSS/login.css" /> -->
-  <title>Cadastro</title>
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100vh;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="x-icon" href="static/Vector.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Hind:wght@600&display=swap"
+        rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="static/CSS/login.css" /> -->
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+        }
 
 
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: 'Bruno Ace', cursive;
-      font-family: 'Hind', sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bruno Ace', cursive;
+            font-family: 'Hind', sans-serif;
+        }
 
-    main {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      width: 100%;
-      /* background: url(../image/MacBook1.png); */
-      /* background: url(Air1.svg); */
-      background-position: center;
-      background-size: cover;
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            /* background: url(../image/MacBook1.png); */
+            /* background: url(Air1.svg); */
+            background-position: center;
+            background-size: cover;
 
-      background: linear-gradient(29deg, #f1ebeb, #d7d7d7, #9c9c9c);
-      background-size: 400% 400%;
-      
-      animation: animate 12s ease infinite;
-      padding: 0;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* background-color: #e6e6e6; */
+            background: linear-gradient(29deg, #f1ebeb, #d7d7d7, #9c9c9c);
+            background-size: 400% 400%;
 
-    }
+            animation: animate 12s ease infinite;
+            padding: 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: #e6e6e6; */
 
-    @keyframes animate {
-      0% {
-        background-position: 0% 50%;
-      }
+        }
 
-      50% {
-        background-position: 100% 50%;
-      }
+        @keyframes animate {
+            0% {
+                background-position: 0% 50%;
+            }
 
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
 
-    .form-box {
-      border-radius: 20px;
-      /* border: #ffffff solid 6px; */
-      /* background-color: red; */
-      backdrop-filter: blur(5px);
-      position: relative;
-      width: 400px;
-      /*min-height: 700px;*/
-      margin: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        .form-box {
+            border-radius: 20px;
+            /* border: #ffffff solid 6px; */
+            /* background-color: red; */
+            backdrop-filter: blur(5px);
+            position: relative;
+            width: 400px;
+            /*min-height: 700px;*/
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-      background-color: #e6e6e6;
-      color: #222222;
-      border-radius: 60px;
-      border-color: #00000000;
-      cursor: pointer;
-      box-shadow: -6px -6px 15px #f8f8f8,
-        6px 6px 15px #7a7a7a;
+            background-color: #e6e6e6;
+            color: #222222;
+            border-radius: 60px;
+            border-color: #00000000;
+            cursor: pointer;
+            box-shadow: -6px -6px 15px #f8f8f8,
+                6px 6px 15px #7a7a7a;
 
-    }
+        }
 
-    .notification {
-      /* background-color: gold; */
-      font-size: 1.4em;
-      color: #3636CC;
-      text-align: center;
-      margin: 0px 0 15px;
-    }
+        /* .notification {
+            background-color: gold;
+            font-size: 1.4em;
+            color: #3636CC;
+            text-align: center;
+            margin: 0px 0 15px;
+        } */
 
-    h2 {
-      /* background-color: #ffba49; */
-      font-size: 3em;
-      color: #000000;
-      text-align: center;
-      margin-top: 50px;
-    }
+        h2 {
+            /* background-color: #ffba49; */
+            font-size: 3em;
+            color: #000000;
+            text-align: center;
+            margin-top: 50px;
+        }
 
-    #hi {
-      /* background-color: royalblue; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        #hi {
+            /* background-color: royalblue; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    ::placeholder {
-      color: rgb(0, 0, 0);
-      /* Altere a cor desejada */
-    }
+        ::placeholder {
+            color: rgb(0, 0, 0);
+            /* Altere a cor desejada */
+        }
 
-    .inputbox {
-      /* background-color: chartreuse; */
-      position: relative;
-      margin: 30px 0;
-      width: 310px;
-      background-color: rgb(255, 255, 255);
-      opacity: 1;
-      border-radius: 15px;
-      border-bottom: 3px solid #000000;
+        .inputbox {
+            /* background-color: chartreuse; */
+            position: relative;
+            margin: 30px 0;
+            width: 310px;
+            background-color: rgb(255, 255, 255);
+            opacity: 1;
+            border-radius: 15px;
+            border-bottom: 3px solid #000000;
 
-    }
+        }
 
-    #email {
-      color: yellowgreen;
-    }
+        #email {
+            color: yellowgreen;
+        }
 
-    /*
+        /*
 .inputbox label{
      position: absolute;
      top: 50%;
@@ -147,215 +149,375 @@
 
 */
 
-    input[type=checkbox]+label {
-      color: #000000;
-      font-style: normal;
-      font-size: large;
-      font-style: italic;
-    }
+        input[type=checkbox]+label {
+            color: #000000;
+            font-style: normal;
+            font-size: large;
+            font-style: italic;
+        }
 
-    input[type=checkbox]:checked+label {
-      color: z#000000;
-      font-style: normal;
-      font-size: large;
-      font-style: italic;
-    }
+        input[type=checkbox]:checked+label {
+            color: z#000000;
+            font-style: normal;
+            font-size: large;
+            font-style: italic;
+        }
 
-    input[type=checkbox]:checked+label+a {
-      font-style: normal;
-      font-size: large;
+        input[type=checkbox]:checked+label+a {
+            font-style: normal;
+            font-size: large;
 
-    }
+        }
 
-    .inputbox input {
-      width: 100%;
-      height: 50px;
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: 1em;
-      padding: 0 35px 0 5px;
-      color: #000000;
-    }
+        .inputbox input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 0 35px 0 5px;
+            color: #000000;
+        }
 
-    .inputbox ion-icon {
-      position: absolute;
-      right: 8px;
-      color: #000000;
-      font-size: 1.2em;
-      top: 17px;
-    }
+        .inputbox ion-icon {
+            position: absolute;
+            right: 8px;
+            color: #000000;
+            font-size: 1.2em;
+            top: 17px;
+        }
 
-    .forget {
-      margin: -15px 0 15px;
-      font-size: 1em;
-      color: #000000;
-      display: flex;
-      justify-content: center;
-      font-style: normal;
-      font-size: large;
-    }
+        .forget {
+            margin: -15px 0 15px;
+            font-size: 1em;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            font-style: normal;
+            font-size: large;
+        }
 
-    .forget label a {
-      color: #000000;
-      text-decoration: none;
-    }
+        .forget label a {
+            color: #000000;
+            text-decoration: none;
+        }
 
-    .forget label a:hover {
-      /* color: #ffba49; */
-      color: #1B66C9;
-      text-decoration: underline;
+        .forget label a:hover {
+            /* color: #ffba49; */
+            color: #1B66C9;
+            text-decoration: underline;
 
-    }
+        }
 
-    #omg {
-      margin-left: 5px;
+        #omg {
+            margin-left: 5px;
 
-    }
+        }
 
-    button {
-      width: 100%;
-      height: 40px;
-      border-radius: 40px;
-      background: #ffffff;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: bold;
-      border-bottom: #000000 solid 1px;
-      /* margin-bottom: 0;
+        button {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            background: #ffffff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            /* border-bottom: #000000 solid 1px; */
+            /* margin-bottom: 0;
      padding-bottom: 0; */
-    }
+        }
 
-    .register {
-      font-size: 1em;
-      color: #000000;
-      text-align: center;
-      margin: 15px 0 50px 0px;
-      /* background-color: grey; */
-    }
+        .register {
+            font-size: 1em;
+            color: #000000;
+            text-align: center;
+            margin: 15px 0 50px 0px;
+            /* background-color: grey; */
+        }
 
-    .register p a {
-      color: #000000;
-      text-decoration: none;
-      font-weight: 600;
+        .register p a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
 
-    }
+        }
 
-    .register p a:hover {
-      /* color: #ffba49; */
-      color: #3636CC;
-      text-decoration: underline;
+        .register p a:hover {
+            /* color: #ffba49; */
+            color: #3636CC;
+            text-decoration: underline;
 
-    }
-  </style>
+        }
+
+        /* alert */
+        .wrapper {
+            width: 280px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 10%;
+            left: 48.5%;
+            /* margin: 20px auto; */
+        }
+
+        .toast {
+            /* caixa */
+            width: 100%;
+            height: 60px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 7px;
+            display: grid;
+            grid-template-columns: 1.3fr 6fr 0.5fr;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+
+            background-color: #e6e6e6;
+            color: #222222;
+            border-radius: 60px;
+            border-color: #00000000;
+            cursor: pointer;
+            box-shadow: -6px -6px 15px #f8f8f8,
+                6px 6px 15px #7a7a7a;
+        }
+
+        .success {
+            border-left: 5px solid #47D764;
+        }
+
+        .error {
+            border-left: 5px solid #ff355b;
+        }
+
+        .error i {
+            color: #ff355b;
+        }
+
+        .toast:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        .outer-container,
+        .inner-container {
+            align-self: center;
+        }
+
+        .outer-container i {
+            font-size: 35px;
+        }
+
+        .success i {
+            color: #47D764;
+        }
+
+        .inner-container p:first-child {
+            color: #101020;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .inner-container p:last-child {
+            font-size: 12px;
+            font-weight: 400;
+            color: #656565;
+        }
+
+        .toast button {
+            align-self: flex-start;
+            background-color: transparent;
+            font-size: 30px;
+            color: #656565;
+            line-height: 0;
+            cursor: pointer;
+            margin-right: -30px;
+        }
+    </style>
 </head>
 
 <body>
-  <main>
-    <div class="form-box">
-      <div class="form-value">
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <div class="notification">{{ messages[0] }}</div>
-        {% endif %} {% endwith %}
-        <h2>Cadastro</h2>
-        <form action="/cadastro" method="post">
-          <div id="hi">
-            <div>
-              <div class="inputbox">
-                <ion-icon name="person"></ion-icon>
-                <input name="nome1" type="text" required placeholder="Nome">
-              </div>
-              <div class="inputbox">
-                <ion-icon name="person"></ion-icon>
-                <input name="nome2" type="text" required placeholder="Sobrenome">
-              </div>
-              <div class="inputbox">
-                <ion-icon name="mail-outline"></ion-icon>
-                <input name="email" type="text" id="name_input" required placeholder="Email" />
-              </div>
-              <div class="inputbox">
-                <ion-icon name="card"></ion-icon>
-                <input name = "cpf" type="text" required placeholder="CPF">
-              </div>
-              <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input name="senha" type="password" id="password_input" required placeholder="Senha" />
-              </div>
-              <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input name="verificação de senha" type="password" id="password_input" required placeholder="verificação de senha" />
-              </div>
-              <div class="forget">
-                <label for="habi">
-                  <input type="checkbox" id="habi" />
-                  <label id="omg" for="smt"> Eu li e aceito os</label>
-                  <a href="https://www.frenet.com.br/wp-content/uploads/2022/01/politica-de-privacidade.png">
-                    Termos de Uso
-                  </a>
-                </label>
-              </div>
-              <button onclick="Enviar()">Registrar</button>
 
-              <div class="register">
-                <p>
-                  <b><i>Já tenho uma conta? </i></b>&nbsp;
-                  <a href="{{ url_for('auth.login') }}">Logar</a>
-                </p>
-              </div>
+    <section id="numero" style="display: none;">{{ num }}</section>
+
+    <main>
+        <div class="form-box">
+            <div class="form-value">
+
+                <h2>Cadastro</h2>
+                <form action="/cadastro" method="post">
+                    <div id="hi">
+                        <div>
+                            <div class="inputbox">
+                                <ion-icon name="person"></ion-icon>
+                                <input name="nome1" type="text" required placeholder="Nome">
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="person"></ion-icon>
+                                <input name="nome2" type="text" required placeholder="Sobrenome">
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input name="email" type="text" id="name_input" required placeholder="Email" />
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="card"></ion-icon>
+                                <input name="cpf" type="text" required placeholder="CPF">
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input name="senha" type="password" id="password_input" required placeholder="Senha" />
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input name="verificação de senha" type="password" id="password_input" required
+                                    placeholder="verificação de senha" />
+                            </div>
+                            <div class="forget">
+                                <label for="habi">
+                                    <input type="checkbox" id="habi" />
+                                    <label id="omg" for="smt"> Eu li e aceito os</label>
+                                    <a
+                                        href="https://www.frenet.com.br/wp-content/uploads/2022/01/politica-de-privacidade.png">
+                                        Termos de Uso
+                                    </a>
+                                </label>
+                            </div>
+                            <button id="registryButton" onclick="Enviar()"
+                                style="border-bottom: #000000 solid 3px;">Registrar</button>
+
+                            <div class="register">
+                                <p>
+                                    <b><i>Já tenho uma conta? </i></b>&nbsp;
+                                    <a href="{{ url_for('auth.login') }}">Logar</a>
+                                </p>
+                            </div>
+                        </div>
+                </form>
             </div>
-        </form>
-      </div>
-    </div>
-  </main>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script>
-    const inputs = document.querySelectorAll("input[name='senha'], input[name='verificação de senha']");
-    const checkbox = document.getElementById("habi");
-    const button = document.querySelector("button");
+        </div>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    inputs.forEach(input => {
-        input.addEventListener("keyup", () => {
+    <nav>
+
+
+        <div class="wrapper">
+
+            <div id="Certo" class="toast success" style="display:none ;">
+                <div class="outer-container">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="inner-container">
+                    <p>sucesso</p>
+                    <!-- <p>Seu cadastro foi concluído com sucesso</p> -->
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+                    <p class="notification">{{ messages[0] }}</p>
+                    {% endif %} {% endwith %}
+                </div>
+                <button class="close">&times;</button>
+            </div>
+
+
+            <div id="Erro" class="toast error" style="display: none ;">
+                <div class="outer-container">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="inner-container">
+                    <p>Erro</p>
+                    <!-- <p >Já existe um cadastrado com dados similares</p> -->
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+                    <p class="notification">{{ messages[0] }}</p>
+                    {% endif %} {% endwith %}
+                </div>
+                <button class="close">&times;</button>
+            </div>
+
+
+        </div>
+
+        <script>
+            var numero = document.getElementById("numero").textContent;
+
+            function toggleDisplay() {
+                var certoDiv = document.getElementById("Certo");
+                var erroDiv = document.getElementById("Erro");
+
+                if (numero === "1") {
+                    certoDiv.style.display = "";
+                    erroDiv.style.display = "none";
+                } else if (numero === "-1") {
+                    certoDiv.style.display = "none";
+                    erroDiv.style.display = "";
+                } else {
+                    certoDiv.style.display = "none";
+                    erroDiv.style.display = "none";
+                }
+            }
+
+
+            toggleDisplay();
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const closeButtons = document.querySelectorAll('.close');
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const toast = this.parentElement;
+                        toast.remove(); // Remove the toast element from the DOM
+                    });
+                });
+            });
+
+
+
+        </script>
+
+    </nav>
+    <script>
+        const inputs = document.querySelectorAll("input[name='senha'], input[name='verificação de senha']");
+        const checkbox = document.getElementById("habi");
+        const button = document.querySelector("button");
+
+        inputs.forEach(input => {
+            input.addEventListener("keyup", () => {
+                checkFormValidity();
+            });
+        });
+
+        checkbox.addEventListener("change", () => {
             checkFormValidity();
         });
-    });
 
-    checkbox.addEventListener("change", () => {
-        checkFormValidity();
-    });
+        function checkFormValidity() {
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (!input.value) {
+                    allFilled = false;
+                }
+            });
 
-    function checkFormValidity() {
-        let allFilled = true;
-        inputs.forEach(input => {
-            if (!input.value) {
-                allFilled = false;
+            const password1 = inputs[0].value;
+            const password2 = inputs[1].value;
+
+            // Check if passwords match and contain a special character and are at least 8 characters long
+            if (allFilled && password1 === password2 && hasSpecialCharacter(password1) && password1.length >= 8 && checkbox.checked) {
+                button.classList.add("active");
+            } else {
+                button.classList.remove("active");
             }
-        });
-
-        const password1 = inputs[0].value;
-        const password2 = inputs[1].value;
-
-        // Check if passwords match and contain a special character and are at least 8 characters long
-        if (allFilled && password1 === password2 && hasSpecialCharacter(password1) && password1.length >= 8 && checkbox.checked) {
-            button.classList.add("active");
-        } else {
-            button.classList.remove("active");
         }
-    }
 
-    window.addEventListener("load", () => inputs[0].focus());
+        window.addEventListener("load", () => inputs[0].focus());
 
-    function hasSpecialCharacter(password) {
-        const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
-        return specialCharacters.test(password);
-    }
+        function hasSpecialCharacter(password) {
+            const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+            return specialCharacters.test(password);
+        }
 
-    function Enviar() {
-      alert("seu cadastro foi enviado com sucesso!");
-    }
-</script>
+        function Enviar() {
+            alert("seu cadastro foi enviado com sucesso!");
+        }
+    </script>
 </body>
 
 </html>

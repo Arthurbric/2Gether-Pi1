@@ -1,7 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, flash
 from auth import auth
-from DAO import cnx, get_event_id, insert_anuncio, insertBLOB, insert_evento_e_categoria
+from DAO import *
 import requests
+import re
+from hashlib import sha256
 
 app = Flask(__name__)
 app.register_blueprint(auth)
@@ -35,9 +37,71 @@ def home():
 @app.route("/editar_perfil")
 def editar_perfil():
     if "loggedin" in session and session["loggedin"] is True:
-        return render_template("dadosPessoal.html")
+        nome = session["nome"]
+        email = session["email"]
+        telefone = selectFromWhere(
+            "tb_usuario", "user_email", session["email"], "user_phone"
+        )
+        cpf = selectFromWhere("tb_usuario", "user_email", session["email"], "user_cpf")
+        return render_template(
+            "dadosPessoal.html", nome=nome, email=email, telefone=telefone, cpf=cpf
+        )
     else:
         return render_template(url_for("auth.login"))
+
+
+@app.route("/editar_perfil", methods=["POST"])
+def editar_perfil_post():
+    if "form1-submit" in request.form:
+        id = session["id"]
+
+        nome = request.form.get("nome")
+        email = request.form.get("email")
+        telefone = request.form.get("telefone")
+
+        checkEmail = CheckCadastro("user_email", email)
+
+        if checkEmail >= 1:
+            flash("Email já cadastrado!")
+            return redirect(url_for("editar_perfil"))
+
+        if re.match(r"/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i", email):
+            updateCadastro(id, nome, email, telefone)
+            session["nome"] = nome
+            session["email"] = email
+
+            flash("Atualizado com sucesso!")
+            return redirect(url_for("editar_perfil"))
+        else:
+            flash("Email inválido!")
+            return redirect(url_for("editar_perfil"))
+
+    if "form2-submit" in request.form:
+        id = session["id"]
+
+        senhaAtual = request.form.get("senha-atual")
+
+        novaSenha = request.form.get("senha-nova")
+        novaSenhaConfirma = request.form.get("confirma-senha-nova")
+
+        senhaHash = sha256(senhaAtual.encode("utf-8")).hexdigest()
+
+        count = CheckLogin(session["email"], senhaHash)
+
+        if count == 0:
+            flash("Senha atual incorreta!")
+            return redirect(url_for("editar_perfil"))
+
+        else:
+            if novaSenha != novaSenhaConfirma:
+                flash("Confirmação de senha nova não correspondente!")
+                return redirect(url_for("editar_perfil"))
+            else:
+                novaSenhaHash = sha256(novaSenha.encode("utf-8")).hexdigest()
+                updateSenha(id, novaSenhaHash)
+
+                flash("Atualizado com sucesso!")
+                return redirect(url_for("editar_perfil"))
 
 
 @app.route("/criar_anuncio")

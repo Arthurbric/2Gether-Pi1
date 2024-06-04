@@ -12,6 +12,7 @@ from DAO import *
 from hashlib import sha256
 from envio_email import gerar_codigo, enviar_email
 from datetime import datetime
+import re
 
 codigos_de_verificacao = {}
 
@@ -21,7 +22,15 @@ app = Flask(__name__)
 
 @auth.route("/login")
 def login():
-    return render_template("login.html")
+    if "num" in session and session["num"] is 1:
+        session["num"] = None
+        return render_template("login.html", num=1)
+    elif "num" in session and session["num"] is -1:
+        session["num"] = None
+        return render_template("login.html", num=-1)
+    else:
+        session["num"] = None
+        return render_template("login.html", num=-0)
 
 
 @auth.route("/login", methods=["POST"])
@@ -34,6 +43,7 @@ def login_post():
     # Se não logar...
     if count == 0:
         flash("Senha e/ou Email incorretos")
+        session["num"] = -1
         return redirect(url_for("auth.login"))
 
     # se logar...
@@ -47,7 +57,15 @@ def login_post():
 
 @auth.route("/cadastro")
 def cadastro():
-    return render_template("Cadastro.html")
+    if "num" in session and session["num"] is 1:
+        session["num"] = None
+        return render_template("Cadastro.html", num=1)
+    elif "num" in session and session["num"] is -1:
+        session["num"] = None
+        return render_template("Cadastro.html", num=-1)
+    else:
+        session["num"] = None
+        return render_template("Cadastro.html", num=-0)
 
 
 @auth.route("/cadastro", methods=["POST"])
@@ -61,21 +79,30 @@ def registro_post():
     checkEmail = CheckCadastro("user_email", email)
     checkCPF = CheckCadastro("user_cpf", cpf)
 
-    if checkEmail >= 1:
-        flash("Email já cadastrado!")
-        return redirect(url_for("auth.cadastro"))
-    elif checkCPF >= 1:
-        flash("CPF já cadastrado")
-        return redirect(url_for("auth.cadastro"))
-    elif not email or not senha or not nome1 or not nome2 or not cpf:
-        flash("Preencha o formulário todo!")
-        return redirect(url_for("cadastro"))
+    if re.match(r"/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i", email):
+        if checkEmail >= 1:
+            flash("Email já cadastrado!")
+            session["num"] = -1
+            return redirect(url_for("auth.cadastro"))
+        elif checkCPF >= 1:
+            flash("CPF já cadastrado")
+            session["num"] = -1
+            return redirect(url_for("auth.cadastro"))
+        elif not email or not senha or not nome1 or not nome2 or not cpf:
+            flash("Preencha o formulário todo!")
+            session["num"] = -1
+            return redirect(url_for("auth.cadastro"))
 
+        else:
+            senhaHash = sha256(senha.encode("utf-8")).hexdigest()
+            insertCadastro(email, senhaHash, nome1, nome2, cpf)
+            flash("Cadastrado com sucesso!")
+            session["num"] = 1
+            return redirect(url_for("auth.login"))
     else:
-        senhaHash = sha256(senha.encode("utf-8")).hexdigest()
-        insertCadastro(email, senhaHash, nome1, nome2, cpf)
-        flash("Cadastrado com sucesso!")
-        return redirect(url_for("auth.login"))
+        flash("Email inválido!")
+        session["num"] = -1
+        return redirect(url_for("auth.cadastro"))
 
 
 @auth.route("/recuperar_senha")

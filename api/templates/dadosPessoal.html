@@ -124,20 +124,25 @@
     </style>
 
     <!-- Para mandar os formularios separadamente  -->
-    <script>
+    <!-- <script>
         function submitForms() {
             document.getElementById("form1").submit();
             document.getElementById("form2").submit();
             document.getElementById("form3").submit();
         }
-    </script>
-</head>
+    </script> -->
+</head> 
 
 <body>
     <div class="container light-style flex-grow-1 container-p-y" style="margin-bottom: 40px;">
         <h4 class="font-weight-bold py-3 mb-4">
             Dados Pessoais
         </h4>
+
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        {{ messages[0] }}
+        {% endif %} {% endwith %}
+
         <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
@@ -157,7 +162,7 @@
                 <div class="col-md-9">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
-                            <form id="form1" action="" method="post">
+                            <form id="form1" method="post">
                                 <div class="card-body media align-items-center">
                                     <img id="profileImage" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
                                         class="d-block ui-w-80">
@@ -196,15 +201,19 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Nome</label>
-                                        <input type="text" class="form-control" placeholder="{{ nome | safe }}">
+                                        <input type="text" name="nome" class="form-control" placeholder="{{ nome | safe }}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">E-mail</label>
-                                        <input type="text" class="form-control mb-1" placeholder="{{ email | safe }}">
+                                        <input type="text" name="email" class="form-control mb-1" placeholder="{{ email | safe }}">
                                         <!-- <div class="alert alert-warning mt-3">
                                             Seu e-mail não foi confirmado. Por favor, verifique sua caixa de entrada<br>
                                             <a href="javascript:void(0)">Reenviar confirmação</a>
                                         </div> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">CPF</label>
+                                        <input type="text" name="cpf" class="form-control" disabled placeholder="{{ cpf | safe }}">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label class="form-label">Trebalho</label>
@@ -213,7 +222,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Telefone</label>
-                                        <input type="text" class="form-control" placeholder="{{ telefone | safe }}">
+                                        <input type="text" name="telefone" class="form-control" placeholder="{{ telefone | safe }}">
                                     </div>
                                     <hr class="border-light m-1">
                                     <div>
@@ -240,30 +249,30 @@
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form1-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
                                     <button type="button" class="btn btn-default">Cancelar</button>
                                 </div>
                             </form>
                         </div>
 
                         <div class="tab-pane fade" id="account-change-password">
-                            <form id="form2" action="submit_form2.php" method="post">
+                            <form id="form2" method="post">
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Senha Atual</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" name="senha-atual" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Nova Senha</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" name="senha-nova" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Repita a nova senha</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" name="confirma-senha-nova" class="form-control">
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form2-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
                                     <button type="button" class="btn btn-default">Cancelar</button>
                                 </div>
                             </form>
