@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+
+.a{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: left;
+    align-items: baseline;
+  
+    background-color: #EDEDED;
+}
+
+.filtro{
+    width: 28vw;
+    height: 100vh;  
+    border-right: 5px solid rgb(156, 155, 155); /* Linha laranja à direita */
+    position: fixed;
+    display: inline-block;
+    background-color: #fff;
+}
+
+
+.box{  
+    margin: 50px 10px;
+    border: 5px solid rgb(156, 155, 155); /* Linha laranja à direita */
+    border-radius: 30px;
+    padding: 20px 25px 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    background-color: #fff;
+}
+
+.tela {
+    display: flexbox;
+    position: absolute;
+    height: 100vh;
+    width: 71%;
+    right: 5px;
+    
+
+}
+
+
+h2{
+    margin-bottom: 10px;
+}
+/*slect*/
+
+
+
+.select-space{
+    margin-top: 30px;
+}
+
+
+
+
+
+.container{
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+    margin: 15px auto 30px;
+    
+}
+.select-btn{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 1.3s ease;
+}
+.select-btn .btn-text{
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    
+}
+.select-btn .arrow-dwn{
+    display: flex;
+    height: 21px;
+    width: 21px;
+    color: #000000;
+    font-size: 14px;
+    border-radius: 50%;
+    
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+.select-btn.open .arrow-dwn{
+    transform: rotate(-180deg);
+}
+.list-items {
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 15px;
+    border-radius: 8px;
+    padding: 0 16px; /* Ajuste o padding para evitar o "salto" durante a transição */
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+.select-btn.open ~ .list-items {
+    max-height: 500px; /* Ajuste conforme necessário para acomodar o conteúdo */
+    padding: 16px; /* Restaurar padding durante a transição */
+}
+
+.list-items .item{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+.list-items .item:hover{
+    background-color: #e7edfe;
+    
+}
+.item .item-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+.item .checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 12px;
+    border: 1.5px solid #c0c0c0;
+    transition: all 0.3s ease-in-out;
+}
+.item.checked .checkbox{
+    background-color: orangered;
+    border-color: orangered;
+}
+.checkbox .check-icon{
+    color: #fff;
+    font-size: 11px;
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+}
+.item.checked .check-icon{
+    transform: scale(1);
+}
+
+/*faixa*/
+
+.wrapper{
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 25px 40px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+  }
+  header h2{
+    font-size: 24px;
+    font-weight: 600;
+  }
+  header p{
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  .price-input{
+    width: 100%;
+    display: flex;
+    margin: 30px 0 35px;
+  }
+  .price-input .field{
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+  }
+  .field input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  .price-input .separator{
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider{
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  .slider .progress{
+    height: 100%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    border-radius: 5px;
+    background: orangered;
+  }
+  .range-input{
+    position: relative;
+  }
+  .range-input input{
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: orangered;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+  }
+  input[type="range"]::-moz-range-thumb{
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: orangered;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+  }
+
+/*tela*/
+
+.view{
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    margin: 20px;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    align-content: space-around;
+    padding: 10px;
+    border-radius: 15px; /* Arredonda as bordas */
+}
+
+.ajuste{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.pass{
+    display: inline-block;
+    flex-wrap: nowrap;
+    border-radius: 10px;
+}
+
+.pass button {
+    margin: 0px;
+    padding: 10px;
+    border: 2px solid black;
+    margin-right: -4px; /* add negative right margin to remove space between buttons */
+    background-color: #fff;
+    font-size: larger;
+}
+  
+.pass button:last-child {
+    margin-right: 0px; /* reset the right margin for the last button */
+}
+
+.pass .proximo {
+    border-radius: 0 5px 5px 0;
+}
+
+.pass .anterior {
+    border-radius: 5px 0 0 5px;
+}
+
+.card {
+    background-color: #fff;
+    width: 300px;
+    height: 400px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px #EDEDED;
+    position: relative; /* Necessário para posicionamento absoluto dentro do cartão */
+    overflow: hidden; /* Para garantir que o conteúdo não transborde */
+    margin-top: 25px;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    align-items: baseline;
+    gap: 4px;
+    height: 50%;
+    margin: 15px;
+}
+
+.card h1 {
+    font-size: 1.8rem;
+}
+
+.card h2 {
+    font-size: .9rem;
+    color: gray;
+}
+
+.card p {
+    font-size: 1.4rem;
+    position: absolute; /* Posicionamento absoluto */
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da direita */
+    margin: 0; /* Remove a margem padrão */
+}
+
+.card > * {
+    transition: transform 1s; /* Define a transição de transformação com duração de 1 segundo */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Aumenta o tamanho em 5% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
