@@ -19,7 +19,7 @@
 }
 
 .filtro{
-    width: 28vw;
+    width: 25vw;
     height: 100vh;  
     border-right: 5px solid rgb(156, 155, 155); /* Linha laranja à direita */
     position: fixed;
@@ -40,10 +40,10 @@
 .tela {
     display: flexbox;
     position: absolute;
-    height: 100vh;
-    width: 71%;
+   
+    width: 74%;
     right: 5px;
-    
+    background-color: #EDEDED;
 
 }
 
