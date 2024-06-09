@@ -24,7 +24,8 @@
     border-right: 5px solid rgb(156, 155, 155); /* Linha laranja à direita */
     position: fixed;
     display: inline-block;
-    background-color: #fff;
+    background-color: #EDEDED;
+    min-width: 300px;
 }
 
 
@@ -40,13 +41,45 @@
 .tela {
     display: flexbox;
     position: absolute;
-   
+    
     width: 74%;
     right: 5px;
     background-color: #EDEDED;
 
 }
 
+@media (max-width: 1024px) {
+    .filtro {
+        width: 30vw;
+        min-width: 250px; /* Ajuste o mínimo para telas menores */
+    }
+    .tela {
+        width: 70vw; /* Mantenha a largura da tela */
+        margin-left: 30vw; /* Ajuste o espaço à esquerda para o filtro */
+    }
+}
+
+@media (max-width: 768px) {
+    .filtro {
+        width: 35vw;
+        min-width: 200px; /* Ajuste o mínimo para telas menores */
+    }
+    .tela {
+        width: 65vw; /* Ajuste a largura da tela */
+        margin-left: 35vw; /* Ajuste o espaço à esquerda para o filtro */
+    }
+}
+
+@media (max-width: 480px) {
+    .filtro {
+        width: 40vw;
+        min-width: 150px; /* Ajuste o mínimo para telas menores */
+    }
+    .tela {
+        width: 60vw; /* Ajuste a largura da tela */
+        margin-left: 40vw; /* Ajuste o espaço à esquerda para o filtro */
+    }
+}
 
 h2{
     margin-bottom: 10px;
@@ -191,17 +224,41 @@ h2{
     height: 45px;
     align-items: center;
   }
-  .field input{
+  .field input {
     width: 100%;
     height: 100%;
     outline: none;
-    font-size: 19px;
-    margin-left: 12px;
+    font-size: 1rem; /* Usar unidades relativas */
+    margin-left: 1rem; /* Usar unidades relativas */
     border-radius: 5px;
     text-align: center;
     border: 1px solid #999;
     -moz-appearance: textfield;
-  }
+    min-width: 50px;
+    box-sizing: border-box; /* Inclui padding e border na largura e altura */
+}
+
+@media (max-width: 600px) {
+    .field input {
+        font-size: 0.875rem; /* Ajusta o tamanho da fonte para telas menores */
+        margin-left: 0.5rem; /* Ajusta a margem para telas menores */
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .field input {
+        font-size: 1rem; /* Tamanho padrão para telas médias */
+        margin-left: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .field input {
+        font-size: 1.25rem; /* Tamanho maior para telas grandes */
+        margin-left: 1.5rem;
+    }
+}
+
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -276,7 +333,8 @@ h2{
 .ajuste{
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
+    margin-bottom: 40px; 
 }
 
 .pass{
