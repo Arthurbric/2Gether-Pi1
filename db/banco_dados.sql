@@ -93,3 +93,17 @@ CREATE TABLE IF NOT EXISTS tb_verificacao_senha (
 
 -- Example data cleanup
 -- DELETE FROM tb_verificacao_senha WHERE expiration_time < NOW();
+
+
+-- Insert 10 records into tb_categoria
+INSERT INTO tb_categoria (tipo_categoria) VALUES 
+('aniversario'),
+('casamento'),
+('festa social'),
+('conferencia'),
+('seminario'),
+('workshop'),
+('show musical'),
+('festival'),
+('reuniao de negocios'),
+('feira de exposicao');
