@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS tb_verificacao_senha (
 -- DELETE FROM tb_verificacao_senha WHERE expiration_time < NOW();
 
 
--- Insert 10 records into tb_categoria
+-- Insert into tb_categoria
 INSERT INTO tb_categoria (tipo_categoria) VALUES 
 ('aniversario'),
 ('casamento'),
