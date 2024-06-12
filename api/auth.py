@@ -79,26 +79,31 @@ def registro_post():
     checkEmail = CheckCadastro("user_email", email)
     checkCPF = CheckCadastro("user_cpf", cpf)
 
-    if re.match(r"/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i", email):
-        if checkEmail >= 1:
-            flash("Email já cadastrado!")
-            session["num"] = -1
-            return redirect(url_for("auth.cadastro"))
-        elif checkCPF >= 1:
-            flash("CPF já cadastrado")
-            session["num"] = -1
-            return redirect(url_for("auth.cadastro"))
-        elif not email or not senha or not nome1 or not nome2 or not cpf:
-            flash("Preencha o formulário todo!")
-            session["num"] = -1
-            return redirect(url_for("auth.cadastro"))
-
+    if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        if re.match(r"([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})", cpf):
+            if checkEmail >= 1:
+                flash("Email já cadastrado!")
+                session["num"] = -1
+                return redirect(url_for("auth.cadastro"))
+            elif checkCPF >= 1:
+                flash("CPF já cadastrado")
+                session["num"] = -1
+                return redirect(url_for("auth.cadastro"))
+            elif not email or not senha or not nome1 or not nome2 or not cpf:
+                flash("Preencha o formulário todo!")
+                session["num"] = -1
+                return redirect(url_for("auth.cadastro"))
+    
+            else:
+                senhaHash = sha256(senha.encode("utf-8")).hexdigest()
+                insertCadastro(email, senhaHash, nome1, nome2, cpf)
+                flash("Cadastrado com sucesso!")
+                session["num"] = 1
+                return redirect(url_for("auth.login"))
         else:
-            senhaHash = sha256(senha.encode("utf-8")).hexdigest()
-            insertCadastro(email, senhaHash, nome1, nome2, cpf)
-            flash("Cadastrado com sucesso!")
-            session["num"] = 1
-            return redirect(url_for("auth.login"))
+            flash("CPF inválido!")
+            session["num"] = -1
+            return redirect(url_for("auth.cadastro"))
     else:
         flash("Email inválido!")
         session["num"] = -1
