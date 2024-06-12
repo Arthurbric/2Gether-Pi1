@@ -65,7 +65,7 @@ def editar_perfil_post():
             flash("Email já cadastrado!")
             return redirect(url_for("editar_perfil"))
 
-        if re.match(r"/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i", email):
+        if re.match(r"[^@]+@[^@]+\.[^@]+", email):
             updateCadastro(id, nome, email, telefone)
             session["nome"] = nome
             session["email"] = email
