@@ -87,8 +87,12 @@ CREATE TABLE IF NOT EXISTS tb_verificacao_senha (
     FOREIGN KEY (user_id) REFERENCES tb_usuario(user_id)
 );
 
--- Example data insertion
--- INSERT INTO tb_usuario (user_id, user_name, user_password, user_email, user_cpf) VALUES (1, 'Vinicius', '12345', 'viviserrao03@gmail.com', '05400140106');
+-- Insert into tb_usuario
+INSERT INTO tb_usuario (user_name, user_password, user_email, user_cpf, user_phone, user_type) VALUES (1, 'Vinicius', '12345', 'viviserrao03@gmail.com', '05400140106','61981479944',TRUE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Maria Silva', 'maria.silva@example.com', 'password123', '12345678900', '11987654321', FALSE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('João Souza', 'joao.souza@example.com', 'password456', '23456789011', '11976543210', FALSE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Ana Pereira', 'ana.pereira@example.com', 'password789', '34567890122', '11965432109', FALSE);
+
 -- INSERT INTO tb_verificacao_senha (user_id, verification_code, expiration_time) VALUES (1, '12345', NOW() + INTERVAL 10 MINUTE);
 
 -- Example data cleanup
