@@ -119,12 +119,12 @@ INSERT INTO tb_eventos (owner_event,location_event,location_address,event_name,e
     event_instagram,event_add_status,event_space,event_daily_price,event_size,event_email,event_telefone) 
 VALUES (2,1,'Rua das Flores, 123','Festa de Aniversário',
     'Venha celebrar um aniversário inesquecível! Música, dança, comidas deliciosas e muita diversão aguardam por você. Não perca!',
-    '@festa_aniversario',TRUE,TRUE,'500','100','aniversario@example.com','11987654321'),
+    '@festa_aniversario',TRUE,TRUE,'500','100','aniversario@gmail.com','11987654321'),
 (2,2,'Avenida Paulista, 456','Casamento dos Sonhos',
     'Participe de um casamento dos sonhos! Decoração de tirar o fôlego, buffet de alta gastronomia e um ambiente mágico para celebrar o amor.',
-    '@casamento_sonhos',TRUE,TRUE,'2000','500','casamento@example.com','11976543210'),
+    '@casamento_sonhos',TRUE,TRUE,'2000','500','casamento@gmail.com','11976543210'),
 (3,3,'Praça Central, 789','Workshop de Tecnologia',
     'Junte-se aos melhores especialistas em tecnologia para um workshop inovador! Descubra as tendências mais recentes e avance na sua carreira.',
-    '@workshop_tec',TRUE,TRUE,'1500','300','workshop@example.com','11965432109');
+    '@workshop_tec',TRUE,TRUE,'1500','300','workshop@gmail.com','11965432109');
 
 INSERT INTO tb_evento_e_categoria (event_id,event_category) VALUES (1,1) , (2,2) , (3,6);
