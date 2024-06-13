@@ -28,7 +28,7 @@ import mysql.connector
 
 cnx = mysql.connector.connect(
     user="root",
-    password="05102003M@th",
+    password="senha123",
     host="127.0.0.1",
     database="db_eventos",
 )
@@ -279,3 +279,242 @@ def insertBLOB(image_event_id, event_image, image_description):
     cursor.execute(sql_insert_blob_query, insert_blob_tuple)
     cnx.commit()
     cursor.close()
+
+def deleteEvent(event_id):
+    cursor = cnx.cursor()
+
+    query = """ DELETE FROM tb_eventos WHERE event_id = %s """
+
+    cursor.execute(query, [event_id])
+    cnx.commit
+    cursor.close()
+
+def getMunicipioId(cidade, uf):
+    cursor = cnx.cursor()
+    
+    query = """ SELECT address_id FROM tb_local WHERE address_city="%s" AND address_state="%s" """
+
+    cursor.execute(query, [cidade, uf])
+
+    querySet = cursor.fetchone()
+
+    if querySet == None:
+        return querySet
+
+    else:
+        result = querySet[0]
+
+        # print(result)
+
+        cursor.close()
+
+        return result
+
+def updateEvent(event_id, local, endereco, nome, descricao, instagram, status, espaco, diaria, tamanho, email, telefone):
+    cursor = cnx.cursor()
+    
+    query = """ UPDATE tb_eventos SET location_event = %s, location_address = "%s", event_name = "%s", event_description = "%s",
+                event_instagram = "%s", event_add_status = %s, event_space = %s, event_daily_price = "%s", event_size = "%s", 
+                event_email = "%s", event_telefone="%s" WHERE event_id = %s """
+    
+    cursor.execute(query, [local,
+                           endereco,
+                           nome,
+                           descricao,
+                           instagram,
+                           status,
+                           espaco,
+                           diaria,
+                           tamanho,
+                           email,
+                           telefone,
+                           event_id
+                           ])
+    cnx.commit()
+    cursor.close()
+
+
+def listEventsUserEdit(User_id):
+    id = id
+    i = 1
+    sHtml = ""
+
+    cursor = cnx.cursor()
+    query = f"SELECT * FROM tb_eventos WHERE owner_event = {id}"
+
+    cursor.execute(query)
+
+    for (event_id, event_name, event_description, event_instagram, event_email, event_telefone, event_daily_price, event_size, location_address) in cursor:
+
+        imagem = "placeholder"
+
+        sHtml =sHtml                   + """<div class="card">
+                                                <div class="card-header" id="heading""" + i + """>
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link" type="button"
+                                                            data-toggle="collapse" data-target="#collapse""" + i + """"
+                                                            aria-expanded="true" aria-controls="collapse""" + i + """">
+                                                            """ + event_name + """
+                                                        </button>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapse""" + i +  """" class="collapse show" aria-labelledby="heading""" + i + """"
+                                                    data-parent="#accordionExample">
+                                                    <form action="{{ url_for('salvar', idAnuncio = """ + event_id + """) }}" method="post">    
+                                                        <div class="card-body">
+
+
+                                                            <nav>
+
+
+
+
+                                                                <div class="card-body media align-items-center">
+                                                                    <img src=" """ + imagem + """ "
+                                                                        style="border-radius: 5%; margin-bottom: 20px; height: 300px;"
+                                                                        alt="" id="imgAnuncio">
+                                                                    <div class="media-body ml-4">
+                                                                        <label class="btn btn-outline-primary">
+                                                                            Carregar Nova Foto
+                                                                            <input type="file"
+                                                                                class="account-settings-fileinput"
+                                                                                onchange="previewImage(event)">
+                                                                        </label> &nbsp;
+                                                                        <button type="button"
+                                                                            class="btn btn-default md-btn-flat"
+                                                                            onclick="removeImage()">Apagar</button>
+                                                                        <div class="text-light small mt-1">JPG, GIF ou PNG
+                                                                            permitidos. Tamanho máximo de
+                                                                            1600K</div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Nome do anúncio</label>
+                                                                    <input name="nome" type="text" class="form-control" value=" """ + event_name + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Descrição do anúncio</label>
+                                                                    <textarea name="descricao" class="form-control"
+                                                                        rows="5">""" + event_description + """</textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Instagram</label>
+                                                                    <input name="instagram" type="text" class="form-control" value=" """ + event_instagram + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Email</label>
+                                                                    <input name="email" type="text" class="form-control" value=" """ + event_email + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Telefone p/ contato</label>
+                                                                    <input name="telefone" type="text" class="form-control" value=" """ + event_telefone + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Valor da Diária</label>
+                                                                    <input name="diaria" type="text" class="form-control" value=" """ + event_daily_price + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Lotação máxima</label>
+                                                                    <input name="tamanho" type="number" class="form-control" value=" """ + event_size + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Endereço</label>
+                                                                    <input name = "endereco" type="text" class="form-control"
+                                                                        value=" """ + location_address + """ ">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="cepInput""" + i +"""">CEP</label>
+                                                                    <input type="text" id="cepInput""" + i +"""" class="form-control"
+                                                                        placeholder="Digite o CEP: 99999-999"
+                                                                        oninput="buscarCEP""" + i +"""()"><br>
+
+                                                                    <div id="resultado" style="display: none;">
+
+                                                                        <div>
+                                                                            <label
+                                                                                for="logradouroExibido">Logradouro</label>
+                                                                            <input type="text" name="logradouroExibido" id="logradouroExibido"
+                                                                                class="form-control" readonly><br>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label for="bairroExibido">Bairro</label>
+                                                                            <input type="text" name="bairroExibido" id="bairroExibido"
+                                                                                class="form-control" readonly><br>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label
+                                                                                for="localidadeExibido">Localidade</label>
+                                                                            <input type="text" name="localidadeExibido" id="localidadeExibido"
+                                                                                class="form-control" readonly><br>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label for="ufExibido">UF</label>
+                                                                            <input type="text" name="ufExibido" id="ufExibido"
+                                                                                class="form-control" readonly><br>
+                                                                        </div>
+
+                                                                        <script>
+                                                                            async function buscarCEP""" + i +"""() {
+                                                                                const cep = document.getElementById('cepInput""" + i +"""').value;
+                                                                                // Only proceed if the input length matches the expected CEP format
+                                                                                if (cep.length === 8) {
+                                                                                    const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+                                                                                    try {
+                                                                                        const response = await fetch(url);
+                                                                                        const data = await response.json();
+
+                                                                                        if (data.erro) {
+                                                                                            alert('CEP não encontrado!');
+                                                                                            return;
+                                                                                        }
+
+                                                                                        document.getElementById('resultado').style.display = 'block';
+                                                                                        // document.getElementById('cepExibido').value = data.cep;
+                                                                                        document.getElementById('logradouroExibido').value = data.logradouro;
+                                                                                        document.getElementById('bairroExibido').value = data.bairro;
+                                                                                        document.getElementById('localidadeExibido').value = data.localidade;
+                                                                                        document.getElementById('ufExibido').value = data.uf;
+                                                                                    } catch (error) {
+                                                                                        console.error(error);
+                                                                                        alert('Erro ao buscar CEP!');
+                                                                                    }
+                                                                                }
+                                                                            }
+
+
+                                                                        </script>
+
+                                                                        <br>
+                                                                        <h5 class="mb-2">
+                                                                            <a href="{{ url_for('deletar', idAnuncio = """ + event_id + """) }}"
+                                                                                class="float-right text-muted text-tiny"
+                                                                                id="apagar-anuncio">
+                                                                                <i class="ion ion-md-close"></i> Apagar
+                                                                            </a>
+                                                                            <i class="ion ion-logo-google text-google"></i>
+                                                                            Apagar Anúncio:
+                                                                        </h5>
+
+                                                                    </div>
+
+
+
+                                                            </nav>
+
+
+                                                        </div>
+                                                        <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
+                                                            <input type="submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>"""
+    
+    return sHtml 

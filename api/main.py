@@ -37,14 +37,16 @@ def home():
 @app.route("/editar_perfil")
 def editar_perfil():
     if "loggedin" in session and session["loggedin"] is True:
+        id = session["id"]
         nome = session["nome"]
         email = session["email"]
         telefone = selectFromWhere(
             "tb_usuario", "user_email", session["email"], "user_phone"
         )
         cpf = selectFromWhere("tb_usuario", "user_email", session["email"], "user_cpf")
+        sHtml = listEventsUserEdit(id)
         return render_template(
-            "dadosPessoal.html", nome=nome, email=email, telefone=telefone, cpf=cpf
+            "dadosPessoal.html", nome=nome, email=email, telefone=telefone, cpf=cpf, sHtml = sHtml
         )
     else:
         return render_template(url_for("auth.login"))
@@ -52,6 +54,7 @@ def editar_perfil():
 
 @app.route("/editar_perfil", methods=["POST"])
 def editar_perfil_post():
+
     if "form1-submit" in request.form:
         id = session["id"]
 
@@ -76,7 +79,7 @@ def editar_perfil_post():
             flash("Email inválido!")
             return redirect(url_for("editar_perfil"))
 
-    if "form2-submit" in request.form:
+    elif "form2-submit" in request.form:
         id = session["id"]
 
         senhaAtual = request.form.get("senha-atual")
@@ -102,6 +105,58 @@ def editar_perfil_post():
 
                 flash("Atualizado com sucesso!")
                 return redirect(url_for("editar_perfil"))
+            
+
+@app.route("/salvar", methods=["POST"])
+def salvar():
+
+    idAnuncio = request.args.get("idAnuncio")
+
+    nome = request.form.get("nome")
+    endereco = request.form.get("endereco")
+    logradouro = request.form.get("logradouroExibido")
+    localidade = request.form.get("localidadeExibido")
+    uf = request.form.get("ufExibido")
+    descricao = request.form.get("descricao")
+    instagram = request.form.get("instagram")
+    status = 1
+    space = 1
+    preco = request.form.get("diaria")
+    tamanhoLocal = request.form.get("tamanho")
+    email = request.form.get("email")
+    telefone = request.form.get("telefone")
+
+    endCompleto = endereco + ", " + logradouro
+
+    try:
+
+        idMunicipio = getMunicipioId(localidade, uf)
+
+        updateEvent(idAnuncio, idMunicipio, endCompleto, nome, descricao, instagram, status, space, preco, tamanhoLocal, email, telefone)
+
+        flash("Atualizado com sucesso!")
+        return redirect(url_for("editar_perfil"))
+    
+    except Exception:
+
+        flash("Ocorreu um erro!")
+        return redirect(url_for("editar_perfil"))
+
+@app.route("/deletar", methods=["POST"])
+def deletar():
+
+    idAnuncio = request.args.get("idAnuncio")
+
+    try:
+        deleteEvent(idAnuncio)
+
+        flash("Deletado com sucesso!")
+        return redirect(url_for("editar_perfil"))
+
+    except Exception:
+
+        flash("Ocorreu um erro!")
+        return redirect(url_for("editar_perfil"))
 
 
 @app.route("/criar_anuncio")

@@ -60,6 +60,11 @@
         .card {
             background-clip: padding-box;
             box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+            border: 3px solid #ccc;
+            /* Light grey border */
+            margin-bottom: 2px;
+            border-radius: 0;
+
         }
 
         .row-bordered {
@@ -121,6 +126,15 @@
             padding: 0.85rem 1.5rem;
             border-color: rgba(24, 28, 33, 0.03) !important;
         }
+
+        .notification {
+            padding-top: 10px;
+            font-size: 1.4em;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        */
     </style>
 
     <!-- Para mandar os formularios separadamente  -->
@@ -131,19 +145,21 @@
             document.getElementById("form3").submit();
         }
     </script> -->
-</head> 
+</head>
 
 <body>
     <div class="container light-style flex-grow-1 container-p-y" style="margin-bottom: 40px;">
-        <h4 class="font-weight-bold py-3 mb-4">
+        <h4 class="font-weight-bold py-2 mb-1">
             Dados Pessoais
         </h4>
+        <div class="card overflow-hidden" style="border-radius: 20px 20px 0 0; /* Top-left, top-right, bottom-right, bottom-left */">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <p class="notification">{{ messages[0] }}</p>
+            {% endif %} {% endwith %}
+        </div>
 
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        {{ messages[0] }}
-        {% endif %} {% endwith %}
 
-        <div class="card overflow-hidden">
+        <div class="card overflow-hidden" style="border-radius: 0 0 20px 20px ; /* Top-left, top-right, bottom-right, bottom-left */">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
                     <div class="list-group list-group-flush account-settings-links">
@@ -201,11 +217,13 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Nome</label>
-                                        <input type="text" name="nome" class="form-control" placeholder="{{ nome | safe }}">
+                                        <input type="text" name="nome" class="form-control"
+                                            placeholder="{{ nome | safe }}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">E-mail</label>
-                                        <input type="text" name="email" class="form-control mb-1" placeholder="{{ email | safe }}">
+                                        <input type="text" name="email" class="form-control mb-1"
+                                            placeholder="{{ email | safe }}">
                                         <!-- <div class="alert alert-warning mt-3">
                                             Seu e-mail não foi confirmado. Por favor, verifique sua caixa de entrada<br>
                                             <a href="javascript:void(0)">Reenviar confirmação</a>
@@ -213,7 +231,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">CPF</label>
-                                        <input type="text" name="cpf" class="form-control" disabled placeholder="{{ cpf | safe }}">
+                                        <input type="text" name="cpf" class="form-control" disabled
+                                            placeholder="{{ cpf | safe }}">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label class="form-label">Trebalho</label>
@@ -222,7 +241,8 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Telefone</label>
-                                        <input type="text" name="telefone" class="form-control" placeholder="{{ telefone | safe }}">
+                                        <input type="text" name="telefone" class="form-control"
+                                            placeholder="{{ telefone | safe }}">
                                     </div>
                                     <hr class="border-light m-1">
                                     <div>
@@ -249,7 +269,8 @@
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" id="form1-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form1-submit" class="btn btn-primary"
+                                        value="Salvar Alterações">&nbsp;
                                     <!-- <button type="button" class="btn btn-default">Cancelar</button> -->
                                 </div>
                             </form>
@@ -272,7 +293,8 @@
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" id="form2-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form2-submit" class="btn btn-primary"
+                                        value="Salvar Alterações">&nbsp;
                                     <!-- <button type="button" class="btn btn-default">Cancelar</button> -->
                                 </div>
                             </form>
@@ -290,7 +312,9 @@
 
 
                                         <div class="accordion" id="accordionExample">
-                                            <div class="card">
+
+                                            {{ sHtml }}
+                                            <!-- <div class="card">
                                                 <div class="card-header" id="headingOne">
                                                     <h5 class="mb-0">
                                                         <button class="btn btn-link" type="button"
@@ -462,164 +486,7 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
-
-
-
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingTwo">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link collapsed" type="button"
-                                                            data-toggle="collapse" data-target="#collapseTwo"
-                                                            aria-expanded="false" aria-controls="collapseTwo">
-                                                            NOME DO #2 Anuncio
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-
-
-
-                                                        <nav>
-
-
-                                                            <img src="static/image/gambul.png"
-                                                                style="border-radius: 5%; margin-bottom: 20px; height: 300px;"
-                                                                alt="">
-                                                            <div class="form-group">
-                                                                <label class="form-label">Bio do Meu anuncios</label>
-                                                                <textarea class="form-control"
-                                                                    rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="form-label">Valor da Diaria</label>
-                                                                <input type="text" class="form-control" value="$R 250">
-                                                            </div>
-                                                            <!-- 
-                                                        <div class="form-group">
-                                                            <label class="form-label">Cidade</label>
-                                                            <select class="custom-select">
-                                                                <option>Brasília - DF</option>
-                                                                <option selected>São Paulo - SP</option>
-                                                                <option>Rio de Janeiro -RJ</option>
-                                                            </select>
-                                                            <input type="text" id="txtBrowsers" list="browsers" />
-                                                        <datalist id="browsers" class="custom-select">
-                                                            <option value="Brasilia - DF" ></option>
-                                                            <option value="Sao paulo"></option>
-                                                            <option value="Rio de Janeiro -RJ" ></option>
-                                                        </datalist>
-                                                        </div> -->
-                                                            <div class="form-group">
-                                                                <label class="form-label">Endereço</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="form-label" for="cepInput2">CEP</label>
-                                                                <input type="text" id="cepInput2" class="form-control"
-                                                                    placeholder="Digite o CEP: 99999-999"
-                                                                    value="70741630" oninput="buscarCEP2()"><br>
-
-                                                                <div id="resultado2" style="display: none;">
-
-                                                                    <div>
-                                                                        <label
-                                                                            for="logradouroExibido2">Logradouro</label>
-                                                                        <input type="text" id="logradouroExibido2"
-                                                                            class="form-control" readonly><br>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label for="bairroExibido2">Bairro</label>
-                                                                        <input type="text" id="bairroExibido2"
-                                                                            class="form-control" readonly><br>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label
-                                                                            for="localidadeExibido2">Localidade</label>
-                                                                        <input type="text" id="localidadeExibido2"
-                                                                            class="form-control" readonly><br>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label for="ufExibido2">UF</label>
-                                                                        <input type="text" id="ufExibido2"
-                                                                            class="form-control" readonly><br>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label>Additional</label>
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-
-                                                                    <script>
-                                                                        async function buscarCEP2() {
-                                                                            const cep2 = document.getElementById('cepInput2').value;
-                                                                            // Only proceed if the input length matches the expected CEP format
-                                                                            if (cep2.length === 8) {
-                                                                                const url = `https://viacep.com.br/ws/${cep2}/json/`;
-
-                                                                                try {
-                                                                                    const response2 = await fetch(url);
-                                                                                    const data2 = await response2.json();
-
-                                                                                    if (data2.erro) {
-                                                                                        alert('CEP não encontrado!');
-                                                                                        return;
-                                                                                    }
-
-                                                                                    document.getElementById('resultado2').style.display = 'block';
-                                                                                    // document.getElementById('cepExibido').value = data2.cep;
-                                                                                    document.getElementById('logradouroExibido2').value = data2.logradouro;
-                                                                                    document.getElementById('bairroExibido2').value = data2.bairro;
-                                                                                    document.getElementById('localidadeExibido2').value = data2.localidade;
-                                                                                    document.getElementById('ufExibido2').value = data2.uf;
-                                                                                } catch (error) {
-                                                                                    console.error(error);
-                                                                                    alert('Erro ao buscar CEP!');
-                                                                                }
-                                                                            }
-                                                                        }
-
-
-                                                                    </script>
-
-                                                                    <br>
-                                                                    <h5 class="mb-2">
-                                                                        <a href="javascript:void(0)"
-                                                                            class="float-right text-muted text-tiny"
-                                                                            id="apagar-anuncio">
-                                                                            <i class="ion ion-md-close"></i> Apagar
-                                                                        </a>
-                                                                        <i class="ion ion-logo-google text-google"></i>
-                                                                        Apagar Anúncio:
-                                                                    </h5>
-                                                                    <!-- <script>
-                                                                        document.getElementById('apagar-anuncio').addEventListener('click', function () {
-                                                                            var confirmacao = confirm("Tem certeza que deseja apagar este anúncio?");
-                                                                            if (confirmacao) {
-
-                                                                                alert("Anúncio apagado com sucesso.");
-                                                                            } else {
-                                                                                alert("Ação cancelada.");
-                                                                            }
-                                                                        });
-                                                                    </script> -->
-                                                                </div>
-
-
-
-                                                        </nav>
-
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                            </div> -->
                                         </div>
                                     </nav>
 
