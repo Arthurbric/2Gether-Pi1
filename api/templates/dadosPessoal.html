@@ -60,6 +60,11 @@
         .card {
             background-clip: padding-box;
             box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+            border: 3px solid #ccc;
+            /* Light grey border */
+            margin-bottom: 2px;
+            border-radius: 0;
+
         }
 
         .row-bordered {
@@ -121,6 +126,15 @@
             padding: 0.85rem 1.5rem;
             border-color: rgba(24, 28, 33, 0.03) !important;
         }
+
+        .notification {
+            padding-top: 10px;
+            font-size: 1.4em;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        */
     </style>
 
     <!-- Para mandar os formularios separadamente  -->
@@ -131,19 +145,21 @@
             document.getElementById("form3").submit();
         }
     </script> -->
-</head> 
+</head>
 
 <body>
     <div class="container light-style flex-grow-1 container-p-y" style="margin-bottom: 40px;">
-        <h4 class="font-weight-bold py-3 mb-4">
+        <h4 class="font-weight-bold py-2 mb-1">
             Dados Pessoais
         </h4>
+        <div class="card overflow-hidden" style="border-radius: 20px 20px 0 0; /* Top-left, top-right, bottom-right, bottom-left */">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <p class="notification">{{ messages[0] }}</p>
+            {% endif %} {% endwith %}
+        </div>
 
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        {{ messages[0] }}
-        {% endif %} {% endwith %}
 
-        <div class="card overflow-hidden">
+        <div class="card overflow-hidden" style="border-radius: 0 0 20px 20px ; /* Top-left, top-right, bottom-right, bottom-left */">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
                     <div class="list-group list-group-flush account-settings-links">
@@ -201,11 +217,13 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Nome</label>
-                                        <input type="text" name="nome" class="form-control" placeholder="{{ nome | safe }}">
+                                        <input type="text" name="nome" class="form-control"
+                                            placeholder="{{ nome | safe }}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">E-mail</label>
-                                        <input type="text" name="email" class="form-control mb-1" placeholder="{{ email | safe }}">
+                                        <input type="text" name="email" class="form-control mb-1"
+                                            placeholder="{{ email | safe }}">
                                         <!-- <div class="alert alert-warning mt-3">
                                             Seu e-mail não foi confirmado. Por favor, verifique sua caixa de entrada<br>
                                             <a href="javascript:void(0)">Reenviar confirmação</a>
@@ -213,7 +231,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">CPF</label>
-                                        <input type="text" name="cpf" class="form-control" disabled placeholder="{{ cpf | safe }}">
+                                        <input type="text" name="cpf" class="form-control" disabled
+                                            placeholder="{{ cpf | safe }}">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label class="form-label">Trebalho</label>
@@ -222,7 +241,8 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Telefone</label>
-                                        <input type="text" name="telefone" class="form-control" placeholder="{{ telefone | safe }}">
+                                        <input type="text" name="telefone" class="form-control"
+                                            placeholder="{{ telefone | safe }}">
                                     </div>
                                     <hr class="border-light m-1">
                                     <div>
@@ -249,7 +269,8 @@
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" id="form1-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form1-submit" class="btn btn-primary"
+                                        value="Salvar Alterações">&nbsp;
                                     <!-- <button type="button" class="btn btn-default">Cancelar</button> -->
                                 </div>
                             </form>
@@ -272,7 +293,8 @@
                                     </div>
                                 </div>
                                 <div class="text-right mt-3" style="margin: 0 20px 15px 0; ">
-                                    <input type="submit" id="form2-submit" class="btn btn-primary" value="Salvar Alterações">&nbsp;
+                                    <input type="submit" id="form2-submit" class="btn btn-primary"
+                                        value="Salvar Alterações">&nbsp;
                                     <!-- <button type="button" class="btn btn-default">Cancelar</button> -->
                                 </div>
                             </form>
