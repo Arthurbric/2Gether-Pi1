@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS tb_eventos (
     owner_event INT NOT NULL,
     location_event INT NOT NULL,
     location_address VARCHAR(150) NOT NULL,
+    location_cep INT NOT NULL,
     event_name VARCHAR(90) NOT NULL,
     event_description LONGTEXT,
     event_instagram VARCHAR(90),
@@ -115,15 +116,15 @@ INSERT INTO tb_categoria (tipo_categoria) VALUES
 
 
 -- Inserir registros na tabela tb_eventos
-INSERT INTO tb_eventos (owner_event,location_event,location_address,event_name,event_description, 
+INSERT INTO tb_eventos (owner_event,location_event,location_address,location_cep,event_name,event_description, 
     event_instagram,event_add_status,event_space,event_daily_price,event_size,event_email,event_telefone) 
-VALUES (2,1,'Rua das Flores, 123','Festa de Aniversário',
+VALUES (2,1,'Rua das Flores, 123','12345678','Festa de Aniversário',
     'Venha celebrar um aniversário inesquecível! Música, dança, comidas deliciosas e muita diversão aguardam por você. Não perca!',
     '@festa_aniversario',TRUE,TRUE,'500','100','aniversario@gmail.com','11987654321'),
-(2,2,'Avenida Paulista, 456','Casamento dos Sonhos',
+(2,2,'Avenida Paulista, 456','23456789','Casamento dos Sonhos',
     'Participe de um casamento dos sonhos! Decoração de tirar o fôlego, buffet de alta gastronomia e um ambiente mágico para celebrar o amor.',
     '@casamento_sonhos',TRUE,TRUE,'2000','500','casamento@gmail.com','11976543210'),
-(3,3,'Praça Central, 789','Workshop de Tecnologia',
+(3,3,'Praça Central, 789','98765432','Workshop de Tecnologia',
     'Junte-se aos melhores especialistas em tecnologia para um workshop inovador! Descubra as tendências mais recentes e avance na sua carreira.',
     '@workshop_tec',TRUE,TRUE,'1500','300','workshop@gmail.com','11965432109');
 

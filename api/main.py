@@ -14,7 +14,7 @@ app.secret_key = "uhrq3ur23guyrh"
 def get_address_info(cep):
     url = f"https://api.brasilaberto.com/v1/zipcode/{cep}"
     response = requests.get(url)
-
+    print(response)
     if response.status_code == 200:
         data = response.json()
         city = data["result"]["city"]
@@ -162,12 +162,12 @@ def deletar():
 @app.route("/criar_anuncio")
 def criar_anuncio():
     if "loggedin" in session and session["loggedin"] is True:
-        return render_template("anunciar.html")
+        return render_template("AnunciouCriarBeta.html")
     else:
         return render_template(url_for("auth.login"))
 
 
-@app.route("/criar_anuncio", methods=["POST", "GET"])
+@app.route("/criar_anuncio", methods=["POST"])
 def criar_anuncio_POST():
     if request.method == "POST":
         email = session["email"]
@@ -175,13 +175,13 @@ def criar_anuncio_POST():
         descricao = request.form.get("descricao")
         tipos = request.form.getlist("tipos")
         imagens = request.files.getlist("imagem")
-        local = request.form.get("localizaçaocepext")
-        cep = request.form.get("localizaçaocep")
+        local = request.form.get("localizacao")
+        cep = request.form.get("localizacaocep")
         email_contato = request.form.get("email")
         telefone = request.form.get("telefone")
-        instagram = request.form.get("Instagran")
-        espaco_bool = request.form.get("espaço")
-        tamanho = request.form.get("Tamanho")
+        instagram = request.form.get("instagram")
+        espaco_bool = request.form.get("espaco")
+        tamanho = request.form.get("tamanho")
         valor_diaria = request.form.get("valordiaria")
 
         cidade, estado = get_address_info(cep)
@@ -198,6 +198,7 @@ def criar_anuncio_POST():
         print("Telefone:", telefone)
         print("Instagram:", instagram)
         print("Tamanho:", tamanho)
+        print("valor de diária: ", valor_diaria)
 
         # primeira operação de inserção
         insert_anuncio(
@@ -207,15 +208,17 @@ def criar_anuncio_POST():
             local,
             titulo,
             1,
+            espaco_bool,
             valor_diaria,
             tamanho,
             email_contato,
             telefone,
             instagram,
-            descricao,
+            descricao
         )
         # pegar id do evento para fazer inserção em eventos_categorias e imagens
         id_anuncio = get_event_id(email, estado, cidade, local, titulo, tamanho)
+        print(id_anuncio)
         # fazer a inserção de cada imagem
         for imagem in imagens:
             if imagem.filename != "":
@@ -229,7 +232,7 @@ def criar_anuncio_POST():
 
         return redirect(url_for("home"))
 
-    return render_template("anunciar.html")
+    return render_template("AnunciouCriarBeta.html")
 
 
 if __name__ == "__main__":

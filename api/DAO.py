@@ -28,7 +28,11 @@ import mysql.connector
 
 cnx = mysql.connector.connect(
     user="root",
+<<<<<<< HEAD
     password="senha123",
+=======
+    password="passywassy",
+>>>>>>> 36795f2850a95d608ebd31eec01bfb176d00863e
     host="127.0.0.1",
     database="db_eventos",
 )
@@ -98,10 +102,10 @@ def selectFromWhere(tabela, campoReferencia, valorReferencia, campoBuscado="*"):
         return result
 
 
-def insertCadastro(email, senha, nome1, nome2, cpf):
+def insertCadastro(email, senha, nome1, nome2, cpf, userType):
     cursor = cnx.cursor()
     query = (
-        "INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf) VALUES ('"
+        "INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_type) VALUES ('"
         + nome1
         + " "
         + nome2
@@ -111,7 +115,9 @@ def insertCadastro(email, senha, nome1, nome2, cpf):
         + senha
         + "', '"
         + cpf
-        + "')"
+        + "', '"
+        + userType
+        +"')"
     )
     cursor.execute(query)
     cnx.commit()
@@ -192,19 +198,21 @@ def insert_anuncio(
     location_address,
     event_name,
     event_add_status,
+    event_space,
     event_daily_price,
     event_size,
     event_email,
     event_telefone,
     event_instagram,
-    event_description,
+    event_description
 ):
+
     cursor = cnx.cursor()
 
     query = """INSERT INTO tb_eventos (owner_event, location_event, location_address, event_name, event_description,
-            event_instagram, event_add_status, event_daily_price, event_size, event_email, event_telefone)
+            event_instagram, event_add_status, event_space, event_daily_price, event_size, event_email, event_telefone)
              VALUES ((SELECT user_id FROM tb_usuario WHERE user_email = %s), (SELECT address_id FROM tb_local WHERE address_state = %s AND address_city = %s), 
-             %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
     cursor.execute(
         query,
         [
@@ -216,11 +224,12 @@ def insert_anuncio(
             event_description,
             event_instagram,
             event_add_status,
+            event_space,
             event_daily_price,
             event_size,
             event_email,
-            event_telefone,
-        ],
+            event_telefone
+        ]
     )
     cnx.commit()
 
