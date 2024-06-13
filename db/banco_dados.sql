@@ -88,10 +88,10 @@ CREATE TABLE IF NOT EXISTS tb_verificacao_senha (
 );
 
 -- Insert into tb_usuario
-INSERT INTO tb_usuario (user_name, user_password, user_email, user_cpf, user_phone, user_type) VALUES (1, 'Vinicius', '12345', 'viviserrao03@gmail.com', '05400140106','61981479944',TRUE);
-INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Maria Silva', 'maria.silva@example.com', 'password123', '12345678900', '11987654321', FALSE);
-INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('João Souza', 'joao.souza@example.com', 'password456', '23456789011', '11976543210', FALSE);
-INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Ana Pereira', 'ana.pereira@example.com', 'password789', '34567890122', '11965432109', FALSE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Vinicius Gurgel','viviserrao03@gmail.com', '12345678', '05400140106','61981479944',TRUE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Maria Silva', 'maria.silva@gmail.com', '12345678', '12345678900', '11987654321', FALSE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('João Souza', 'joao.souza@gmail.com', '12345678', '23456789011', '11976543210', FALSE);
+INSERT INTO tb_usuario (user_name, user_email, user_password, user_cpf, user_phone, user_type) VALUES ('Ana Pereira', 'ana.pereira@gmail.com', '12345678', '34567890122', '11965432109', FALSE);
 
 -- INSERT INTO tb_verificacao_senha (user_id, verification_code, expiration_time) VALUES (1, '12345', NOW() + INTERVAL 10 MINUTE);
 
@@ -115,60 +115,16 @@ INSERT INTO tb_categoria (tipo_categoria) VALUES
 
 
 -- Inserir registros na tabela tb_eventos
-INSERT INTO tb_eventos (
-    owner_event, 
-    location_event, 
-    location_address, 
-    event_name, 
-    event_description, 
-    event_instagram, 
-    event_add_status, 
-    event_space, 
-    event_daily_price, 
-    event_size, 
-    event_email, 
-    event_telefone
-) 
-VALUES 
-(
-    2,
-    1,
-    'Rua das Flores, 123',
-    'Festa de Aniversário',
+INSERT INTO tb_eventos (owner_event,location_event,location_address,event_name,event_description, 
+    event_instagram,event_add_status,event_space,event_daily_price,event_size,event_email,event_telefone) 
+VALUES (2,1,'Rua das Flores, 123','Festa de Aniversário',
     'Venha celebrar um aniversário inesquecível! Música, dança, comidas deliciosas e muita diversão aguardam por você. Não perca!',
-    '@festa_aniversario',
-    TRUE,
-    TRUE,
-    '500',
-    '100',
-    'aniversario@example.com',
-    '11987654321'
-),
-(
-    2, 
-    2,
-    'Avenida Paulista, 456',
-    'Casamento dos Sonhos',
+    '@festa_aniversario',TRUE,TRUE,'500','100','aniversario@example.com','11987654321'),
+(2,2,'Avenida Paulista, 456','Casamento dos Sonhos',
     'Participe de um casamento dos sonhos! Decoração de tirar o fôlego, buffet de alta gastronomia e um ambiente mágico para celebrar o amor.',
-    '@casamento_sonhos',
-    TRUE,
-    TRUE,
-    '2000',
-    '500',
-    'casamento@example.com',
-    '11976543210'
-),
-(
-    3,
-    3,
-    'Praça Central, 789',
-    'Workshop de Tecnologia',
+    '@casamento_sonhos',TRUE,TRUE,'2000','500','casamento@example.com','11976543210'),
+(3,3,'Praça Central, 789','Workshop de Tecnologia',
     'Junte-se aos melhores especialistas em tecnologia para um workshop inovador! Descubra as tendências mais recentes e avance na sua carreira.',
-    '@workshop_tec',
-    TRUE,
-    TRUE,
-    '1500',
-    '300',
-    'workshop@example.com',
-    '11965432109'
-);
+    '@workshop_tec',TRUE,TRUE,'1500','300','workshop@example.com','11965432109');
+
+INSERT INTO tb_evento_e_categoria (event_id,event_category) VALUES (1,1) , (2,2) , (3,6);
