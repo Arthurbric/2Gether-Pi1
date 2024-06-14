@@ -344,7 +344,7 @@ def updateEvent(event_id, local, endereco, nome, descricao, instagram, status, e
 
 
 def listEventsUserEdit(User_id):
-    id = id
+    id = User_id
     i = 1
     sHtml = ""
 
