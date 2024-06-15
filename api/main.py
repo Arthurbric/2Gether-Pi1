@@ -45,8 +45,9 @@ def editar_perfil():
         )
         cpf = selectFromWhere("tb_usuario", "user_email", session["email"], "user_cpf")
         sHtml = listEventsUserEdit(id)
+        countEventos = counterListEventsUser(id)
         return render_template(
-            "dadosPessoal.html", nome=nome, email=email, telefone=telefone, cpf=cpf, sHtml = sHtml
+            "dadosPessoal.html", nome=nome, email=email, telefone=telefone, cpf=cpf, sHtml = sHtml, countEventos = countEventos
         )
     else:
         return render_template(url_for("auth.login"))

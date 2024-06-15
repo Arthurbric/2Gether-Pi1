@@ -28,7 +28,7 @@ import mysql.connector
 
 cnx = mysql.connector.connect(
     user="root",
-    password="passywassy",
+    password="senha123",
     host="127.0.0.1",
     database="db_eventos",
 )
@@ -337,6 +337,24 @@ def updateEvent(event_id, local, endereco, nome, descricao, instagram, status, e
                            ])
     cnx.commit()
     cursor.close()
+
+def counterListEventsUser(User_id):
+    id = User_id
+
+    query = (
+        "SELECT COUNT(*) FROM tb_eventos WHERE owner_event = %s"
+    )
+
+    cursor = cnx.cursor()
+    cursor.execute(query, [id])
+
+    querySet = cursor.fetchone()
+
+    count = querySet[0]
+
+    cursor.close()
+
+    return count
 
 
 def listEventsUserEdit(User_id):
