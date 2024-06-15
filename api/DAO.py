@@ -28,11 +28,7 @@ import mysql.connector
 
 cnx = mysql.connector.connect(
     user="root",
-<<<<<<< HEAD
-    password="senha123",
-=======
     password="passywassy",
->>>>>>> 36795f2850a95d608ebd31eec01bfb176d00863e
     host="127.0.0.1",
     database="db_eventos",
 )
@@ -361,15 +357,17 @@ def listEventsUserEdit(User_id):
 
         for row in rows:
 
-            event_id= row[0]
+            event_id= str(row[0])
             event_name= row[4]
             event_description= row[5]
             event_instagram= row[6]
             event_email= row[11]
-            event_telefone= row[12]
-            event_daily_price= row[9]
-            event_size= row[10]
+            event_telefone= str(row[12])
+            event_daily_price= str(row[9])
+            event_size= str(row[10])
             location_address= row[3]
+
+            i = str(i)
 
 
             imagem = "placeholder"
@@ -543,7 +541,10 @@ def listEventsUserEdit(User_id):
                                                     </div>
                                                 </div>"""
             
+            i = int(i)
+            
             i += 1
+
     except Exception as e:
         return f"<p>Um erro ocorreu: {e}</p>"
     
