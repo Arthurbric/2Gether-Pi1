@@ -41,9 +41,9 @@ def editar_perfil():
         nome = session["nome"]
         email = session["email"]
         telefone = selectFromWhere(
-            "tb_usuario", "user_email", session["email"], "user_phone"
+            "tb_usuario", "user_id", session["id"], "user_phone"
         )
-        cpf = selectFromWhere("tb_usuario", "user_email", session["email"], "user_cpf")
+        cpf = selectFromWhere("tb_usuario", "user_id", session["id"], "user_cpf")
         sHtml = listEventsUserEdit(id)
         countEventos = counterListEventsUser(id)
         return render_template(
@@ -59,11 +59,26 @@ def editar_perfil_post():
     if "form1-submit" in request.form:
         id = session["id"]
 
-        nome = request.form.get("nome")
-        email = request.form.get("email")
-        telefone = request.form.get("telefone")
+        if "nome" in request.form and request.form["nome"] is not "":
+            nome = request.form.get("nome")
+        else:
+            nome = selectFromWhere("tb_usuario", "user_id", session["id"], "user_name")
 
-        checkEmail = CheckCadastro("user_email", email)
+        if "email" in request.form and request.form["email"] is not "":
+            email = request.form.get("email")
+        else:
+            email = selectFromWhere("tb_usuario", "user_id", session["id"], "user_email")
+
+        if "telefone" in request.form and request.form["telefone"] is not "":
+            telefone = request.form.get("telefone")
+        else:
+            telefone = selectFromWhere("tb_usuario", "user_id", session["id"], "user_phone")
+
+        if email == selectFromWhere("tb_usuario", "user_id", session["id"], "user_email"):
+            checkEmail = 0
+        
+        else:
+            checkEmail = CheckCadastro("user_email", email)
 
         if checkEmail >= 1:
             flash("Email já cadastrado!")
@@ -80,7 +95,7 @@ def editar_perfil_post():
             flash("Email inválido!")
             return redirect(url_for("editar_perfil"))
 
-    elif "form2-submit" in request.form:
+    if "form2-submit" in request.form:
         id = session["id"]
 
         senhaAtual = request.form.get("senha-atual")

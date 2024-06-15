@@ -54,6 +54,14 @@ def login_post():
 
     return redirect(url_for("home"))
 
+@auth.route("/logoff")
+def logoff():
+    session["loggedin"] = False
+    session["id"] = None
+    session["nome"] = None
+    session["email"] = None
+
+    return redirect(url_for("home"))
 
 @auth.route("/cadastro")
 def cadastro():
@@ -96,7 +104,7 @@ def registro_post():
     
             else:
                 senhaHash = sha256(senha.encode("utf-8")).hexdigest()
-                insertCadastro(email, senhaHash, nome1, nome2, cpf, userType="1")
+                insertCadastro(email, senhaHash, nome1, nome2, cpf, userType=1)
                 flash("Cadastrado com sucesso!")
                 session["num"] = 1
                 return redirect(url_for("auth.login"))

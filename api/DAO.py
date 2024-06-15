@@ -93,9 +93,9 @@ def selectFromWhere(tabela, campoReferencia, valorReferencia, campoBuscado="*"):
 
         # print(result)
 
-        cursor.close()
+    cursor.close()
 
-        return result
+    return result
 
 
 def insertCadastro(email, senha, nome1, nome2, cpf, userType):
