@@ -129,3 +129,9 @@ VALUES (2,1,'Rua das Flores, 123','12345678','Festa de Aniversário',
     '@workshop_tec',TRUE,TRUE,'1500','300','workshop@gmail.com','11965432109');
 
 INSERT INTO tb_evento_e_categoria (event_id,event_category) VALUES (1,1) , (2,2) , (3,6);
+
+
+INSERT INTO tb_local (address_state, address_city) VALUES 
+('SP', 'São Paulo'),
+('RJ', 'Rio de Janeiro'),
+('MG', 'Belo Horizonte');
