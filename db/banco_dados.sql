@@ -135,3 +135,9 @@ INSERT INTO tb_local (address_state, address_city) VALUES
 ('SP', 'São Paulo'),
 ('RJ', 'Rio de Janeiro'),
 ('MG', 'Belo Horizonte');
+
+INSERT INTO tb_review (user_review_id, event_review_id, rating, comments) VALUES 
+(2, 1, 4.5, 'A festa foi incrível!'),
+(3, 2, 5.0, 'O casamento foi perfeito!'),
+(4, 3, 4.0, 'O workshop foi muito informativo.');
+
