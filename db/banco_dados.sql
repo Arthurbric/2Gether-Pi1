@@ -141,3 +141,5 @@ INSERT INTO tb_review (user_review_id, event_review_id, rating, comments) VALUES
 (3, 2, 5.0, 'O casamento foi perfeito!'),
 (4, 3, 4.0, 'O workshop foi muito informativo.');
 
+
+---INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (1, LOAD_FILE('home/documento/path para imagem'), 'Descrição da imagem');
