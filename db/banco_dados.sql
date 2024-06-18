@@ -129,3 +129,17 @@ VALUES (2,1,'Rua das Flores, 123','12345678','Festa de Aniversário',
     '@workshop_tec',TRUE,TRUE,'1500','300','workshop@gmail.com','11965432109');
 
 INSERT INTO tb_evento_e_categoria (event_id,event_category) VALUES (1,1) , (2,2) , (3,6);
+
+
+INSERT INTO tb_local (address_state, address_city) VALUES 
+('SP', 'São Paulo'),
+('RJ', 'Rio de Janeiro'),
+('MG', 'Belo Horizonte');
+
+INSERT INTO tb_review (user_review_id, event_review_id, rating, comments) VALUES 
+(2, 1, 4.5, 'A festa foi incrível!'),
+(3, 2, 5.0, 'O casamento foi perfeito!'),
+(4, 3, 4.0, 'O workshop foi muito informativo.');
+
+
+---INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (1, LOAD_FILE('home/documento/path para imagem'), 'Descrição da imagem');
