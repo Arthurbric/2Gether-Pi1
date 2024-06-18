@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS tb_usuario (
     user_password VARCHAR(90) NOT NULL,
     user_cpf VARCHAR(14) NOT NULL UNIQUE,
     user_phone VARCHAR(15),
-    user_image BLOB,
+    user_image LONGBLOB,
     user_type BOOLEAN NOT NULL
 );
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS tb_evento_e_categoria (
 CREATE TABLE IF NOT EXISTS tb_imagem_evento (
     image_id INT PRIMARY KEY AUTO_INCREMENT,
     image_event_id INT NOT NULL,
-    event_images BLOB,
+    event_images LONGBLOB,
     image_description VARCHAR(150),
     FOREIGN KEY (image_event_id) REFERENCES tb_eventos(event_id)
 );
@@ -141,4 +141,4 @@ INSERT INTO tb_review (user_review_id, event_review_id, rating, comments) VALUES
 (3, 2, 5.0, 'O casamento foi perfeito!'),
 (4, 3, 4.0, 'O workshop foi muito informativo.');
 
--- INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\profile2.png'), 'Descrição da imagem');
+INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\profile2.png'), 'Descrição da imagem');
