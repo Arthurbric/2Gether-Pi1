@@ -375,6 +375,8 @@ def listEventsUserEdit(User_id):
 
         for row in rows:
 
+            owner_event = str(row[1])
+
             event_id= str(row[0])
             event_name= row[4]
             event_description= row[5]
@@ -391,7 +393,7 @@ def listEventsUserEdit(User_id):
             imagem = "placeholder"
 
             sHtml =sHtml                   + """<div class="card">
-                                                    <div class="card-header" id="heading""" + i + """>
+                                                    <div class="card-header" id="heading""" + i + """">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link" type="button"
                                                                 data-toggle="collapse" data-target="#collapse""" + i + """"
@@ -403,9 +405,10 @@ def listEventsUserEdit(User_id):
 
                                                     <div id="collapse""" + i +  """" class="collapse show" aria-labelledby="heading""" + i + """"
                                                         data-parent="#accordionExample">
-                                                        <form action="{{ url_for('salvar', idAnuncio = """ + event_id + """) }}" method="post">    
+                                                        <form action="{{ url_for('salvar', idAnuncio = """ + event_id + """, acesso = 1) }}" method="post">    
                                                             <div class="card-body">
 
+                                                            
 
                                                                 <nav>
 
@@ -534,10 +537,12 @@ def listEventsUserEdit(User_id):
                                                                             </script>
 
                                                                             <br>
+                                                                            <form id="deletar""" + i + """" action="{{ url_for('deletar', idAnuncio = """ + event_id + """, acesso = 1) }}" method="post" style="display:none">
+                                                                            </form>
                                                                             <h5 class="mb-2">
-                                                                                <a href="{{ url_for('deletar', idAnuncio = """ + event_id + """) }}"
+                                                                                <a href="#"
                                                                                     class="float-right text-muted text-tiny"
-                                                                                    id="apagar-anuncio">
+                                                                                    id="apagar-anuncio" onclick="document.getElementById("deletar""" + i + """").submit();">
                                                                                     <i class="ion ion-md-close"></i> Apagar
                                                                                 </a>
                                                                                 <i class="ion ion-logo-google text-google"></i>

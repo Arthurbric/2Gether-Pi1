@@ -59,17 +59,17 @@ def editar_perfil_post():
     if "form1-submit" in request.form:
         id = session["id"]
 
-        if "nome" in request.form and request.form["nome"] is not "":
+        if "nome" in request.form and request.form["nome"] != "":
             nome = request.form.get("nome")
         else:
             nome = selectFromWhere("tb_usuario", "user_id", session["id"], "user_name")
 
-        if "email" in request.form and request.form["email"] is not "":
+        if "email" in request.form and request.form["email"] != "":
             email = request.form.get("email")
         else:
             email = selectFromWhere("tb_usuario", "user_id", session["id"], "user_email")
 
-        if "telefone" in request.form and request.form["telefone"] is not "":
+        if "telefone" in request.form and request.form["telefone"] != "":
             telefone = request.form.get("telefone")
         else:
             telefone = selectFromWhere("tb_usuario", "user_id", session["id"], "user_phone")
@@ -126,53 +126,64 @@ def editar_perfil_post():
 @app.route("/salvar", methods=["POST"])
 def salvar():
 
-    idAnuncio = request.args.get("idAnuncio")
-
-    nome = request.form.get("nome")
-    endereco = request.form.get("endereco")
-    logradouro = request.form.get("logradouroExibido")
-    localidade = request.form.get("localidadeExibido")
-    uf = request.form.get("ufExibido")
-    descricao = request.form.get("descricao")
-    instagram = request.form.get("instagram")
-    status = 1
-    space = 1
-    preco = request.form.get("diaria")
-    tamanhoLocal = request.form.get("tamanho")
-    email = request.form.get("email")
-    telefone = request.form.get("telefone")
-
-    endCompleto = endereco + ", " + logradouro
-
     try:
 
-        idMunicipio = getMunicipioId(localidade, uf)
+        if int(request.args["acesso"]) == 1:
 
-        updateEvent(idAnuncio, idMunicipio, endCompleto, nome, descricao, instagram, status, space, preco, tamanhoLocal, email, telefone)
+            idAnuncio = request.args.get("idAnuncio")
 
-        flash("Atualizado com sucesso!")
-        return redirect(url_for("editar_perfil"))
-    
-    except Exception:
+            nome = request.form.get("nome")
+            endereco = request.form.get("endereco")
+            logradouro = request.form.get("logradouroExibido")
+            localidade = request.form.get("localidadeExibido")
+            uf = request.form.get("ufExibido")
+            descricao = request.form.get("descricao")
+            instagram = request.form.get("instagram")
+            status = 1
+            space = 1
+            preco = request.form.get("diaria")
+            tamanhoLocal = request.form.get("tamanho")
+            email = request.form.get("email")
+            telefone = request.form.get("telefone")
 
-        flash("Ocorreu um erro!")
+            endCompleto = endereco + ", " + logradouro
+
+            idMunicipio = getMunicipioId(localidade, uf)
+
+            updateEvent(idAnuncio, idMunicipio, endCompleto, nome, descricao, instagram, status, space, preco, tamanhoLocal, email, telefone)
+
+            flash("Atualizado com sucesso!")
+            return redirect(url_for("editar_perfil"))
+            
+        else:
+            return redirect(url_for("home"))
+        
+    except Exception as e:
+
+        flash(f"Ocorreu um erro! {e}")
         return redirect(url_for("editar_perfil"))
 
 @app.route("/deletar", methods=["POST"])
 def deletar():
 
-    idAnuncio = request.args.get("idAnuncio")
-
     try:
-        deleteEvent(idAnuncio)
 
-        flash("Deletado com sucesso!")
-        return redirect(url_for("editar_perfil"))
+        if int(request.args["acesso"]) == 1:
 
-    except Exception:
+            idAnuncio = request.args.get("idAnuncio")
+            
+            deleteEvent(idAnuncio)
 
-        flash("Ocorreu um erro!")
-        return redirect(url_for("editar_perfil"))
+            flash("Deletado com sucesso!")
+            return redirect(url_for("editar_perfil"))
+        
+        else:
+            return redirect(url_for("home"))
+
+    except Exception as e:
+
+            flash(f"Ocorreu um erro! {e}")
+            return redirect(url_for("editar_perfil"))
 
 
 @app.route("/criar_anuncio")
