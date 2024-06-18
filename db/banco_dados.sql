@@ -1,6 +1,8 @@
 -- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS db_eventos;
 
+-- DROP DATABASE db_eventos;
+
 -- Use the created database
 USE db_eventos;
 
@@ -113,7 +115,10 @@ INSERT INTO tb_categoria (tipo_categoria) VALUES
 ('reuniao de negocios'),
 ('feira de exposicao');
 
-
+INSERT INTO tb_local (address_state, address_city) VALUES 
+('SP', 'São Paulo'),
+('RJ', 'Rio de Janeiro'),
+('MG', 'Belo Horizonte');
 
 -- Inserir registros na tabela tb_eventos
 INSERT INTO tb_eventos (owner_event,location_event,location_address,location_cep,event_name,event_description, 
@@ -131,15 +136,10 @@ VALUES (2,1,'Rua das Flores, 123','12345678','Festa de Aniversário',
 INSERT INTO tb_evento_e_categoria (event_id,event_category) VALUES (1,1) , (2,2) , (3,6);
 
 
-INSERT INTO tb_local (address_state, address_city) VALUES 
-('SP', 'São Paulo'),
-('RJ', 'Rio de Janeiro'),
-('MG', 'Belo Horizonte');
-
 INSERT INTO tb_review (user_review_id, event_review_id, rating, comments) VALUES 
 (2, 1, 4.5, 'A festa foi incrível!'),
 (3, 2, 5.0, 'O casamento foi perfeito!'),
 (4, 3, 4.0, 'O workshop foi muito informativo.');
 
 
----INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (1, LOAD_FILE('home/documento/path para imagem'), 'Descrição da imagem');
+-- INSERT INTO tb_imagem_evento (image_event_id, event_images, image_description) VALUES (1, LOAD_FILE('home/documento/path para imagem'), 'Descrição da imagem');
