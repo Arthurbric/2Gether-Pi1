@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+
+
+li, a, button{   
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+}
+
+header{
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.logo{
+    
+    cursor: pointer;
+}   
+
+.navl {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.navl li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navl a {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+.navl ion-icon,
+.navl i {
+    margin-left: 8px; /* Ajuste o espaçamento conforme necessário */
+}
+
+/* Estilos adicionais para a navegação e layout */
+header {
+    background-color: rgb(255, 255, 255);
+}
+
+header button {
+    padding: 20px 30px; 
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(231, 102, 56);    
+}
+
+.dist {
+    list-style: none;
+    display: flex;
+}
+
+.login {
+    border: 2px solid black;
+    margin-right: 10px;
+}
+
+.Anunciar {
+    background-color: orangered;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-start; /* Alinha itens à esquerda */
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%; /* Certifique-se de que o contêiner ocupe toda a largura */
+}
+
+.search-bar {
+    background: #fff;
+    width: 130%; /* Aumente a largura para ocupar mais espaço */
+    max-width: 1900px; /* Define um limite máximo para a largura */
+    padding: 6px 30px 6px 50px;
+    border-radius: 50px;
+    border: #000000 solid 1px;
+    margin-left: 0; /* Garante que esteja alinhado à esquerda */
+    margin-right: auto; /* Impede qualquer margem à direita */
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-bar form input {
+    display: block;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.search-bar form input[type="date"] {
+    width: calc(100% - 15px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.search-bar form button {
+    background: #ff5361;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.search-bar form button img {
+    width: 25px;
+    margin-top: 7px;
+}
+
+.location-input {
+    flex: 1;
+}
+
+.search-bar form label {
+    font-weight: 600;
+}
+
+
+header button{
+    padding: 20px 30px; 
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    background-color: rgb(231, 102, 56);    
+}
+
+.dist{
+    list-style: none;
+    display: flex;
+    
+}
+
+.login{
+    border: 2px solid black;
+    margin-right: 10px;
+}
+
+
+.Anunciar{
+    background-color: orangered;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    
+  }
+
+  .aoba{
+    display: flex;
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: black solid 2px;
+    border-radius: 5px 0 0 5px;
+    color: #000000;
+    
+  }
+
+  #estado{
+    border: black solid 2px;
+    cursor: pointer;
+    padding: 8px 8px;
+    
+  }
+
+  #estado:hover{
+    background-color: #eeeeee;
+
+  }
+  
+  .search-button {
+    border: black solid 1px;
+    padding: 8px 10px;
+    color: #fff;
+    background-color: #000000;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .gg-bell{
+    margin-left: 2px;
+  }
+  
+.nav{
+    border-bottom: 1px solid #000000;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+}
+
+.container{
+    padding: 13px;
+}
+.header h1{
+    font-size: 4vw;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    padding-top: 15%;
+    
+}
+
+.search-bar {
+    background: #fff;
+    width: 100%; /* Ocupará 100% da largura do elemento pai */
+    max-width: 1900px; /* Define um limite máximo para a largura */
+    padding: 6px 30px 6px 50px;
+    border-radius: 50px;
+    border: #000000 solid 1px;
+    margin-left: 0; /* Garante que esteja alinhado à esquerda */
+    margin-right: auto; /* Impede qualquer margem à direita */
+}
+
+
+
+
+.search-bar form{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-bar form input{
+    display: block;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.search-bar form input[type="date"] {
+    width: calc(100% - 15px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.search-bar form button{
+    background: #ff5361;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.search-bar form button img{
+    width: 25px;
+    margin-top: 7px;
+}
+
+.location-input {
+    flex: 1;
+}
+
+.search-bar form label {
+    font-weight: 600;
+}
+
+
