@@ -1,4 +1,5 @@
 import mysql.connector
+import base64
 
 
 # try:
@@ -28,7 +29,7 @@ import mysql.connector
 
 cnx = mysql.connector.connect(
     user="root",
-    password="senha123",
+    password="Gatitcha1",
     host="127.0.0.1",
     database="db_eventos",
 )
@@ -191,6 +192,7 @@ def insert_anuncio(
     user_email,
     estado,
     cidade,
+    location_cep,
     location_address,
     event_name,
     event_add_status,
@@ -205,10 +207,10 @@ def insert_anuncio(
 
     cursor = cnx.cursor()
 
-    query = """INSERT INTO tb_eventos (owner_event, location_event, location_address, event_name, event_description,
+    query = """INSERT INTO tb_eventos (owner_event, location_event, location_address, location_cep, event_name, event_description,
             event_instagram, event_add_status, event_space, event_daily_price, event_size, event_email, event_telefone)
              VALUES ((SELECT user_id FROM tb_usuario WHERE user_email = %s), (SELECT address_id FROM tb_local WHERE address_state = %s AND address_city = %s), 
-             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
     cursor.execute(
         query,
         [
@@ -216,6 +218,7 @@ def insert_anuncio(
             estado,
             cidade,
             location_address,
+            location_cep,
             event_name,
             event_description,
             event_instagram,
@@ -356,6 +359,66 @@ def counterListEventsUser(User_id):
 
     return count
 
+
+def selectFrom(tabela, limit = 1,campoBuscado="*"):
+    cursor = cnx.cursor()
+
+    if limit:
+        query = f"SELECT {campoBuscado} FROM {tabela} LIMIT 5"
+    else:
+        query = f"SELECT {campoBuscado} FROM {tabela}"
+    cursor.execute(query)
+
+    query = cursor.fetchall()
+
+    cursor.close()
+    cnx.close()
+
+    return query
+
+
+def selectimage(id_evento):
+    cursor = cnx.cursor()
+    query = f"SELECT image_event_id, event_images, image_description FROM tb_imagem_evento WHERE image_event_id = {id_evento} LIMIT 1"
+    cursor.execute(query)
+    result = cursor.fetchone()
+    cursor.close()
+    cnx.close()
+
+    if result:
+        return {
+            'image_event_id': result[0],
+            'event_images': result[1],
+            'image_description': result[2]
+        }
+    else:
+        return None
+
+
+def lista_anuncios():
+    sHtml = "<div>"
+    eventos = selectFrom("tb_eventos")
+    for evento in eventos:
+        event_id = eventos[0]
+        owner_event = eventos[1]
+        location_event = eventos[2]
+        location_address = eventos[3]
+        event_name = eventos[4]
+        event_description = eventos[5]
+        event_instagram = eventos[6]
+        event_add_status = eventos[7]
+        event_space = eventos[8]
+        event_daily_price = eventos[9]
+        event_size = eventos[10]
+        event_email = eventos[11]
+        event_telefone = eventos[12]
+        image = base64.b64encode(selectimage(event_id)['event_images']).decode('utf-8')
+        if eventos !=  None:
+            sHtml = sHtml + "<div name = nome><img><a action= {{ redirect(url.for(anuncio/anuncio.id) }} ></div>"
+        else:
+            sHtml = sHtml + "<p> Nenhum anuncio encontrado </p>"
+    sHtml = sHtml + "</div>"
+    return sHtml
 
 def listEventsUserEdit(User_id):
     id = User_id
@@ -572,3 +635,5 @@ def listEventsUserEdit(User_id):
         return f"<p>Um erro ocorreu: {e}</p>"
     
     return sHtml 
+
+

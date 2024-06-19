@@ -232,6 +232,7 @@ def criar_anuncio_POST():
             email,
             estado,
             cidade,
+            cep,
             local,
             titulo,
             1,

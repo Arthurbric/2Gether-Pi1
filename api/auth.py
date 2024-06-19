@@ -13,6 +13,7 @@ from hashlib import sha256
 from envio_email import gerar_codigo, enviar_email
 from datetime import datetime
 import re
+import base64
 
 codigos_de_verificacao = {}
 
@@ -104,7 +105,7 @@ def registro_post():
     
             else:
                 senhaHash = sha256(senha.encode("utf-8")).hexdigest()
-                insertCadastro(email, senhaHash, nome1, nome2, cpf, userType=1)
+                insertCadastro(email, senhaHash, nome1, nome2, cpf, userType='1')
                 flash("Cadastrado com sucesso!")
                 session["num"] = 1
                 return redirect(url_for("auth.login"))
@@ -217,3 +218,9 @@ def redefinir_senha_post():
 @auth.route("/LoadingPage1")
 def LoadingPage1():
     return render_template("LoadingPage1.html")
+
+@auth.route("/teste_blob")
+def teste_blob():
+    blob = selectimage(2)['event_images']
+    imagem = base64.b64encode(blob).decode('utf-8')
+    return render_template("modelo64.html", image_base64=imagem)
