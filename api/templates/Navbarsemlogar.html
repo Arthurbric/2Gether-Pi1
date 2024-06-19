@@ -1,37 +1,47 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PL1</title>
-    <link rel="stylesheet" href="api/static/CSS/Navbar.css">
-</head>
-    <body>
-        <header>
-            <a class="Logo" href="index.html">
-                <img width="80" src="static/yellow.jpg" alt="Logo da empresa"> 
+
+<link rel="stylesheet" href="api/static/CSS/nav.css">
+
+<header>
+    <div class="nav">
+            
+            <a class="Logo" href="#">
+                <img  width="140" src="api/static/image/2gather.svg" alt="Logo da empresa"> 
             </a>
             <div class="search-container">
-                <div class="aoba">
-                    <input type="text" placeholder="Buscar" class="search-input">
-                    <select name="estado" id="estado" required>
-                        <option value="SP">SP</option>
-                    </select>
+              <div class="container">
+                
+                <div class="search-bar">
+                  <form>
+                    <div class="location-input">
+                      <label>Local</label>
+                      <input type="text" placeholder="Buscar Local para festas" />
+                    </div>
+                    <div>
+                      <label>Data entrada</label>
+                      <input type="date" name="Data_Entrada" />
+                    </div>
+                    <div>
+                      <label>Data saida</label>
+                      <input type="date" name="Data_Saida" />
+                    </div>
+                    <div>
+                      <label>Quantidade Pessoas</label>
+                      <input type="number" placeholder="Número de convidados" />
+                    </div>
+                    <button type="submit"><img src="api/static/image/search.png" /></button>
+                  </form>
                 </div>
-                <button class="search-button">Buscar</button>
-            </div>
+              </div>
             <nav>
                 <ul class="navl">
-                    <li><a  href="">Chat</a></li>
-                    <li><a href="">Notificação</a></li>            
+                    <li><a href=""><ion-icon name="home-outline"></ion-icon>Home<i class="gg-bell"></i></a></li>            
                 </ul>
             </nav>            
             <ul class="dist">
-                <li><a  href="login.html"><button class="login">Entar</button></a></li>
-                <li><a  href="login.html"><button class="Anunciar">Vender</button></a></li>
+                <li><a  href="login.html"><button class="login">entrar</button></a></li>
+                <li><a  href="login.html"><button class="Anunciar">anuência</button></a></li>
             </ul>
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        </div>
         </header>
-    </body>
-</html>
-
-
