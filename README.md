@@ -27,8 +27,8 @@ It connects event organizers with venue hosts and equipment providers, making it
 1. Clone the repository:  
    ```bash
    git clone https://github.com/your-username/together.git
-   cd together
-````
+   cd 2Gether
+   ```
 
 2. Install dependencies:
 
