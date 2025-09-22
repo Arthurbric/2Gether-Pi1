@@ -2,7 +2,7 @@
 # 2Gether – Event Platform 🎉
 
 ## Overview
-**Together** is an innovative platform designed to simplify the planning of special events.  
+**2Gether** is an innovative platform designed to simplify the planning of special events.  
 It connects event organizers with venue hosts and equipment providers, making it easier to manage everything in one place.
 
 ---
@@ -26,7 +26,7 @@ It connects event organizers with venue hosts and equipment providers, making it
 ## 🚀 Getting Started
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/together.git
+   git clone https://github.com/arthurbric/2Gether.git
    cd 2Gether
    ```
 
@@ -61,8 +61,4 @@ It connects event organizers with venue hosts and equipment providers, making it
 
 Suggestions and contributions are welcome!
 📧 [arthurarash.bric@gmail.com](mailto:arthurarash.bric@gmail.com)
-
-```
-
----
 
